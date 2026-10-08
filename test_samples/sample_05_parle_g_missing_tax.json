@@ -1,0 +1,15 @@
+{
+  "package_id": "sample_05_parle_g_missing_tax",
+  "images": [
+    { "image_id": "img_front", "label_side": "front", "width": 1920, "height": 1080 }
+  ],
+  "detections": [
+    { "detection_id": "d01", "source_image_id": "img_front", "text": "Parle-G Original Gluco Biscuits", "confidence": 0.98, "bounding_box": { "x": 100, "y": 80, "width": 700, "height": 60 } },
+    { "detection_id": "d02", "source_image_id": "img_front", "text": "Net Wt. 65 g", "confidence": 0.95, "bounding_box": { "x": 100, "y": 170, "width": 220, "height": 38 } },
+    { "detection_id": "d03", "source_image_id": "img_front", "text": "MRP Rs. 10.00", "confidence": 0.97, "bounding_box": { "x": 100, "y": 230, "width": 250, "height": 40 } },
+    { "detection_id": "d04", "source_image_id": "img_front", "text": "Mfd by: Parle Products Pvt Ltd, V.S. Khandekar Marg, Vile Parle East, Mumbai-400057", "confidence": 0.93, "bounding_box": { "x": 100, "y": 300, "width": 1200, "height": 45 } },
+    { "detection_id": "d05", "source_image_id": "img_front", "text": "PKD: 01/26", "confidence": 0.96, "bounding_box": { "x": 100, "y": 370, "width": 200, "height": 35 } },
+    { "detection_id": "d06", "source_image_id": "img_front", "text": "Best Before 6 Months", "confidence": 0.92, "bounding_box": { "x": 100, "y": 420, "width": 320, "height": 35 } },
+    { "detection_id": "d07", "source_image_id": "img_front", "text": "Customer Care: 022-66916911 cs@parle.biz", "confidence": 0.95, "bounding_box": { "x": 100, "y": 480, "width": 620, "height": 36 } }
+  ]
+}

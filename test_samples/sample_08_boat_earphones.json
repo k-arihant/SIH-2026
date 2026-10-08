@@ -1,0 +1,16 @@
+{
+  "package_id": "sample_08_boat_earphones",
+  "images": [
+    { "image_id": "img_box", "label_side": "back", "width": 1920, "height": 1080 }
+  ],
+  "detections": [
+    { "detection_id": "d01", "source_image_id": "img_box", "text": "boAt Rockerz 255 Pro+", "confidence": 0.98, "bounding_box": { "x": 80, "y": 80, "width": 550, "height": 55 } },
+    { "detection_id": "d02", "source_image_id": "img_box", "text": "Generic Name: Bluetooth Wireless Earphones", "confidence": 0.96, "bounding_box": { "x": 80, "y": 160, "width": 680, "height": 38 } },
+    { "detection_id": "d03", "source_image_id": "img_box", "text": "Net Quantity: 1 Unit", "confidence": 0.97, "bounding_box": { "x": 80, "y": 220, "width": 290, "height": 38 } },
+    { "detection_id": "d04", "source_image_id": "img_box", "text": "Country of Origin: China", "confidence": 0.98, "bounding_box": { "x": 80, "y": 280, "width": 360, "height": 38 } },
+    { "detection_id": "d05", "source_image_id": "img_box", "text": "Imported and Marketed by: Imagine Marketing Limited, Unit 505, Supreme Chambers, Andheri West, Mumbai-400053", "confidence": 0.94, "bounding_box": { "x": 80, "y": 340, "width": 1400, "height": 45 } },
+    { "detection_id": "d06", "source_image_id": "img_box", "text": "Month & Year of Import: 01/2026", "confidence": 0.95, "bounding_box": { "x": 80, "y": 410, "width": 450, "height": 35 } },
+    { "detection_id": "d07", "source_image_id": "img_box", "text": "Maximum Retail Price (MRP): ₹ 2,990.00 (inclusive of all taxes)", "confidence": 0.97, "bounding_box": { "x": 80, "y": 470, "width": 850, "height": 42 } },
+    { "detection_id": "d08", "source_image_id": "img_box", "text": "Customer Complaint cell: info@imaginemarketingindia.com, Contact: 022-6918-1920", "confidence": 0.95, "bounding_box": { "x": 80, "y": 530, "width": 1150, "height": 40 } }
+  ]
+}

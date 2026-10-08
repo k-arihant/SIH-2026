@@ -1,0 +1,178 @@
+{
+  "pkg_01_britannia_good_day": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Britannia Industries", "Kolkata", "700017"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Butter Cookies"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["100"], "details": { "numeric_value": 100, "unit": "g" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["05/2026"], "details": { "date_type": "pkd" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["20"], "details": { "numeric_value": 20.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["6 months"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["1800-425-4449", "feedback@britindia.com"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": true, "contains": ["0.20"], "details": { "numeric_value": 0.2, "unit": "g" }, "uncertain": false }
+  },
+  "pkg_02_maggi_noodles": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Nestlé India", "Barakhamba", "110001"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Instant Noodles"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["70"], "details": { "numeric_value": 70, "unit": "g" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["04/2026"], "details": { "date_type": "mfg" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["14"], "details": { "numeric_value": 14.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["9 MONTHS"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["1800-103-1947", "wecare@in.nestle.com"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": true, "contains": ["0.20"], "details": { "numeric_value": 0.2, "unit": "g" }, "uncertain": false }
+  },
+  "pkg_03_tata_salt_noisy": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Tata Consumer Products", "Kolkata", "700020"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["IODISED SALT"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["1 kg"], "details": { "numeric_value": 1, "unit": "kg" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["02 / 2026"], "details": { "date_type": "pkd" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["28"], "details": { "numeric_value": 28.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": false },
+    "consumer_care": { "found": true, "contains": ["care@tataconsumer.com", "1800-345-1720"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": false }
+  },
+  "pkg_04_haldiram_bhujia_bilingual": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Haldiram Snacks", "Mathura Road", "110044"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["BHUJIA", "भुजिया"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["400"], "details": { "numeric_value": 400, "unit": "g" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["15/01/2026"], "details": { "date_type": "pkd" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["110"], "details": { "numeric_value": 110.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["6 Months"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["support@haldirams.com", "0120-2400111"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": true, "contains": ["0.275"], "details": { "numeric_value": 0.275, "unit": "g" }, "uncertain": false }
+  },
+  "pkg_05_ferrero_imported": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Ferrero India", "Pune", "Ferrero Industriale"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Hazelnut Chocolates"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["200"], "details": { "numeric_value": 200, "unit": "g" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["FEB 2026"], "details": { "date_type": "import" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["549"], "details": { "numeric_value": 549.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["30/11/2026"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["customercare.india@ferrero.com", "1800 209 1200"], "uncertain": false },
+    "country_of_origin": { "found": true, "contains": ["Italy"], "uncertain": false },
+    "unit_sale_price": { "found": true, "contains": ["34.31"], "details": { "unit": "Piece" }, "uncertain": false }
+  },
+  "pkg_06_dettol_refill_liquid": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Reckitt Benckiser", "Gurugram", "122001"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Liquid Hand Wash"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["750"], "details": { "numeric_value": 750, "unit": "ml" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["03/26"], "details": { "date_type": "mfg" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["119"], "details": { "numeric_value": 119.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["24 months"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["1800-102-7245", "care@reckitt.com"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": true, "contains": ["0.16"], "details": { "numeric_value": 0.16, "unit": "ml" }, "uncertain": false }
+  },
+  "pkg_07_cadbury_dairy_milk": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Mondelez India", "Mumbai", "400013"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Chocolate"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["50"], "details": { "numeric_value": 50, "unit": "g" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["12/25"], "details": { "date_type": "mfg" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["45"], "details": { "numeric_value": 45.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["12/26"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["1800 22 7080", "suggestions@mdlz.com"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": false }
+  },
+  "pkg_08_parle_g_missing_tax": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Parle Products", "Mumbai", "400057"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Biscuits"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["65"], "details": { "numeric_value": 65, "unit": "g" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["01/26"], "details": { "date_type": "pkd" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["10"], "details": { "numeric_value": 10.0, "currency": "INR", "tax_inclusive_mentioned": false }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["6 Months"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["022-66916911", "cs@parle.biz"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": false }
+  },
+  "pkg_09_local_bread_missing_care": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Sunrise Bakers", "Pune", "411019"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Brown Bread"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["400"], "details": { "numeric_value": 400, "unit": "g" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["10/05/2026"], "details": { "date_type": "pkd" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["45"], "details": { "numeric_value": 45.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["4 days"], "uncertain": false },
+    "consumer_care": { "found": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": false }
+  },
+  "pkg_10_colgate_combo_pack": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Colgate-Palmolive", "Sanand", "382170"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Toothpaste"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["300", "150"], "details": { "numeric_value": 300, "unit": "g" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["01/26"], "details": { "date_type": "mfg" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["195"], "details": { "numeric_value": 195.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["24 months"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["Consumeraffairs_india@colpal.com", "1800-225599"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": true, "contains": ["0.65"], "details": { "numeric_value": 0.65, "unit": "g" }, "uncertain": false }
+  },
+  "pkg_11_amul_butter": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Gujarat Co-operative Milk Marketing Federation", "Anand", "388001"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Table Butter"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["100"], "details": { "numeric_value": 100, "unit": "g" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["03/2026"], "details": { "date_type": "pkd" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["56"], "details": { "numeric_value": 56.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["9 months"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["1800 258 3333", "customercare@amul.coop"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": false }
+  },
+  "pkg_12_blurry_corrupted_snack": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Estate", "Guj"], "uncertain": true },
+    "generic_commodity_name": { "found": true, "contains": ["Kurkure"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["45"], "details": { "numeric_value": 45, "unit": "g" }, "uncertain": true },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["26"], "uncertain": true },
+    "mrp": { "found": true, "contains": ["20"], "details": { "numeric_value": 20.0, "currency": "INR" }, "uncertain": true },
+    "best_before_expiry": { "found": false },
+    "consumer_care": { "found": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": false }
+  },
+  "pkg_13_boat_earphones_electronic": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Imagine Marketing", "Mumbai", "400053"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Wireless Earphones"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["1 Unit"], "details": { "numeric_value": 1, "unit": "Unit" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["01/2026"], "details": { "date_type": "import" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["2990"], "details": { "numeric_value": 2990.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": false },
+    "consumer_care": { "found": true, "contains": ["info@imaginemarketingindia.com", "022-6918-1920"], "uncertain": false },
+    "country_of_origin": { "found": true, "contains": ["China"], "uncertain": false },
+    "unit_sale_price": { "found": false }
+  },
+  "pkg_14_nivea_cream_cosmetic": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Nivea India", "Sanand", "382110"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Moisturiser Cream"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["100"], "details": { "numeric_value": 100, "unit": "ml" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["02/2026"], "details": { "date_type": "mfg" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["210"], "details": { "numeric_value": 210.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["30 months"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["care@nivea.in", "022-62487999"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": false }
+  },
+  "pkg_15_saffola_gold_oil": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Marico Limited", "Mumbai", "400098"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["Edible Vegetable Oil"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["1 L"], "details": { "numeric_value": 1, "unit": "L" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["03/2026"], "details": { "date_type": "pkd" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["175"], "details": { "numeric_value": 175.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["9 Months"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["ccc@marico.com", "1800 22 2248"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": true, "contains": ["175.00"], "details": { "unit": "L" }, "uncertain": false }
+  },
+  "pkg_16_everest_turmeric_spice": {
+    "manufacturer_packer_importer": { "found": true, "contains": ["Everest Food Products", "Mumbai", "400053"], "uncertain": false },
+    "generic_commodity_name": { "found": true, "contains": ["TURMERIC POWDER", "हल्दी"], "uncertain": false },
+    "net_quantity": { "found": true, "contains": ["100"], "details": { "numeric_value": 100, "unit": "g" }, "uncertain": false },
+    "manufacturing_packing_import_date": { "found": true, "contains": ["03/26"], "details": { "date_type": "pkd" }, "uncertain": false },
+    "mrp": { "found": true, "contains": ["35"], "details": { "numeric_value": 35.0, "currency": "INR", "tax_inclusive_mentioned": true }, "uncertain": false },
+    "best_before_expiry": { "found": true, "contains": ["12 MONTHS"], "uncertain": false },
+    "consumer_care": { "found": true, "contains": ["022-26241111", "customercare@everestspices.com"], "uncertain": false },
+    "country_of_origin": { "found": false },
+    "unit_sale_price": { "found": false }
+  }
+}

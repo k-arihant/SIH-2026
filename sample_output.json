@@ -1,0 +1,72 @@
+{
+  "package_id": "pkg_karachi_bakery_001",
+  "fields": {
+    "manufacturer_packer_importer": "(DD). Karachi bakery Pearl Pvt Limited Survey No 240, Shed No.4, Pedamma Gadda, Rajendra Nagar Mandal, Gaganpahad Village, Ranga Reddy Dist., Telangana, India. PIN-500030",
+    "generic_common_name": null,
+    "net_quantity": "400g",
+    "manufacturing_packing_import_date": "PACKED ON: 26.AUG.2026",
+    "mrp": "MRP in (₹): (Incl. of all taxes) 220.00",
+    "best_before_expiry": "USE BY DATE : 25.JAN.2027",
+    "consumer_care": "For Customer Complaints or Feedback/Suggestions/Queries, Please Contact Our Executive Customer Care No: +9140 66660909, or Mail us: info@karachibakery.com, or Write to us at Following Address, Karachi Bakery, 6-3-190, Khanchand Towers, Road No 1, Banjara Hills, Hyderabad-500034, (T.S.) India.",
+    "country_of_origin": "PRODUCT OF INDIA",
+    "unit_sale_price": "USP . RS . 0.55/g"
+  },
+  "field_details": {
+    "mrp": {
+      "numeric_value": 220.0,
+      "currency": "INR",
+      "tax_inclusive_mentioned": true
+    },
+    "net_quantity": {
+      "numeric_value": 400.0,
+      "unit": "g"
+    }
+  },
+  "evidence": {
+    "manufacturer_packer_importer": {
+      "raw_source_text": "(DD). Karachi bakery Pearl Pvt Limited Survey No 240, Shed No.4, Pedamma Gadda, Rajendra Nagar Mandal, Gaganpahad Village, Ranga Reddy Dist., Telangana, India. PIN-500030",
+      "detection_id": "det_001, det_002"
+    },
+    "generic_common_name": {
+      "raw_source_text": null,
+      "detection_id": null
+    },
+    "net_quantity": {
+      "raw_source_text": "Net Quantity: 400g",
+      "detection_id": "det_008, det_009"
+    },
+    "manufacturing_packing_import_date": {
+      "raw_source_text": "PACKED ON: 26.AUG.2026",
+      "detection_id": "det_013, det_014"
+    },
+    "mrp": {
+      "raw_source_text": "MRP in (₹): (Incl. of all taxes) 220.00",
+      "detection_id": "det_010, det_011"
+    },
+    "best_before_expiry": {
+      "raw_source_text": "USE BY DATE : 25.JAN.2027",
+      "detection_id": "det_015, det_016"
+    },
+    "consumer_care": {
+      "raw_source_text": "For Customer Complaints or Feedback/Suggestions/Queries, Please Contact Our Executive Customer Care No: +9140 66660909, or Mail us: info@karachibakery.com, or Write to us at Following Address, Karachi Bakery, 6-3-190, Khanchand Towers, Road No 1, Banjara Hills, Hyderabad-500034, (T.S.) India.",
+      "detection_id": "det_006"
+    },
+    "country_of_origin": {
+      "raw_source_text": "PRODUCT OF INDIA",
+      "detection_id": "det_007"
+    },
+    "unit_sale_price": {
+      "raw_source_text": "USP . RS . 0.55/g",
+      "detection_id": "det_011"
+    }
+  },
+  "unclassified_text": [
+    "fssai FSSL:13618011000083",
+    "(EE). Laxmi Foods, Second Floor, Sy.no. 127/A2, Thimmapur Village, Thimapura Railway Station, Kothur, rangareddy, Telangana, 509325",
+    "fssai FSSL:13619015000030",
+    "Unit Sale Price(₹):",
+    "Lot No.:",
+    "62H1 27KI",
+    "8 908004 010850"
+  ]
+}

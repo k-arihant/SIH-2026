@@ -1,0 +1,241 @@
+{
+  "package_id": "pkg_karachi_bakery_001",
+  "images": [
+    {
+      "image_id": "img_box_back",
+      "label_side": "back",
+      "width": 1920,
+      "height": 1440
+    }
+  ],
+  "detections": [
+    {
+      "detection_id": "det_001",
+      "source_image_id": "img_box_back",
+      "text": "(DD). Karachi bakery Pearl Pvt Limited",
+      "confidence": 0.98,
+      "bounding_box": {
+        "x": 245,
+        "y": 10,
+        "width": 315,
+        "height": 28
+      }
+    },
+    {
+      "detection_id": "det_002",
+      "source_image_id": "img_box_back",
+      "text": "Survey No 240, Shed No.4, Pedamma Gadda, Rajendra Nagar Mandal, Gaganpahad Village, Ranga Reddy Dist., Telangana, India. PIN-500030",
+      "confidence": 0.97,
+      "bounding_box": {
+        "x": 245,
+        "y": 38,
+        "width": 381,
+        "height": 89
+      }
+    },
+    {
+      "detection_id": "det_003",
+      "source_image_id": "img_box_back",
+      "text": "fssai FSSL:13618011000083",
+      "confidence": 0.96,
+      "bounding_box": {
+        "x": 651,
+        "y": 30,
+        "width": 147,
+        "height": 78
+      }
+    },
+    {
+      "detection_id": "det_004",
+      "source_image_id": "img_box_back",
+      "text": "(EE). Laxmi Foods, Second Floor, Sy.no. 127/A2, Thimmapur Village, Thimapura Railway Station, Kothur, rangareddy, Telangana, 509325",
+      "confidence": 0.96,
+      "bounding_box": {
+        "x": 245,
+        "y": 142,
+        "width": 366,
+        "height": 86
+      }
+    },
+    {
+      "detection_id": "det_005",
+      "source_image_id": "img_box_back",
+      "text": "fssai FSSL:13619015000030",
+      "confidence": 0.96,
+      "bounding_box": {
+        "x": 651,
+        "y": 148,
+        "width": 150,
+        "height": 79
+      }
+    },
+    {
+      "detection_id": "det_006",
+      "source_image_id": "img_box_back",
+      "text": "For Customer Complaints or Feedback/Suggestions/Queries, Please Contact Our Executive Customer Care No: +9140 66660909, or Mail us: info@karachibakery.com, or Write to us at Following Address, Karachi Bakery, 6-3-190, Khanchand Towers, Road No 1, Banjara Hills, Hyderabad-500034, (T.S.) India.",
+      "confidence": 0.95,
+      "bounding_box": {
+        "x": 243,
+        "y": 245,
+        "width": 448,
+        "height": 76
+      }
+    },
+    {
+      "detection_id": "det_007",
+      "source_image_id": "img_box_back",
+      "text": "PRODUCT OF INDIA",
+      "confidence": 0.99,
+      "bounding_box": {
+        "x": 490,
+        "y": 370,
+        "width": 124,
+        "height": 18
+      }
+    },
+    {
+      "detection_id": "det_008",
+      "source_image_id": "img_box_back",
+      "text": "Net Quantity:",
+      "confidence": 0.98,
+      "bounding_box": {
+        "x": 235,
+        "y": 445,
+        "width": 111,
+        "height": 28
+      }
+    },
+    {
+      "detection_id": "det_009",
+      "source_image_id": "img_box_back",
+      "text": "400g",
+      "confidence": 0.99,
+      "bounding_box": {
+        "x": 437,
+        "y": 439,
+        "width": 63,
+        "height": 41
+      }
+    },
+    {
+      "detection_id": "det_010",
+      "source_image_id": "img_box_back",
+      "text": "MRP in (₹): (Incl. of all taxes)",
+      "confidence": 0.96,
+      "bounding_box": {
+        "x": 218,
+        "y": 516,
+        "width": 123,
+        "height": 52
+      }
+    },
+    {
+      "detection_id": "det_011",
+      "source_image_id": "img_box_back",
+      "text": "220.00 ; USP . RS . 0.55/g",
+      "confidence": 0.95,
+      "bounding_box": {
+        "x": 390,
+        "y": 535,
+        "width": 328,
+        "height": 26
+      }
+    },
+    {
+      "detection_id": "det_012",
+      "source_image_id": "img_box_back",
+      "text": "Unit Sale Price(₹):",
+      "confidence": 0.97,
+      "bounding_box": {
+        "x": 193,
+        "y": 571,
+        "width": 148,
+        "height": 26
+      }
+    },
+    {
+      "detection_id": "det_013",
+      "source_image_id": "img_box_back",
+      "text": "PACKED ON:",
+      "confidence": 0.98,
+      "bounding_box": {
+        "x": 245,
+        "y": 601,
+        "width": 96,
+        "height": 24
+      }
+    },
+    {
+      "detection_id": "det_014",
+      "source_image_id": "img_box_back",
+      "text": "26.AUG.2026",
+      "confidence": 0.98,
+      "bounding_box": {
+        "x": 390,
+        "y": 565,
+        "width": 185,
+        "height": 26
+      }
+    },
+    {
+      "detection_id": "det_015",
+      "source_image_id": "img_box_back",
+      "text": "USE BY DATE :",
+      "confidence": 0.98,
+      "bounding_box": {
+        "x": 228,
+        "y": 630,
+        "width": 113,
+        "height": 25
+      }
+    },
+    {
+      "detection_id": "det_016",
+      "source_image_id": "img_box_back",
+      "text": "25.JAN.2027",
+      "confidence": 0.98,
+      "bounding_box": {
+        "x": 390,
+        "y": 594,
+        "width": 185,
+        "height": 26
+      }
+    },
+    {
+      "detection_id": "det_017",
+      "source_image_id": "img_box_back",
+      "text": "Lot No.:",
+      "confidence": 0.98,
+      "bounding_box": {
+        "x": 272,
+        "y": 662,
+        "width": 69,
+        "height": 24
+      }
+    },
+    {
+      "detection_id": "det_018",
+      "source_image_id": "img_box_back",
+      "text": "62H1 27KI",
+      "confidence": 0.96,
+      "bounding_box": {
+        "x": 390,
+        "y": 622,
+        "width": 138,
+        "height": 26
+      }
+    },
+    {
+      "detection_id": "det_019",
+      "source_image_id": "img_box_back",
+      "text": "8 908004 010850",
+      "confidence": 0.98,
+      "bounding_box": {
+        "x": 845,
+        "y": 489,
+        "width": 19,
+        "height": 201
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "input_file": "sampleinput.json",
+  "output_file": "sampleout.json",
+  "compliance_file": "compliance_result.json",
+  "congigation_file": "congigation_data.json",
+  "consolidated_file": "consolidated_data.json"
+}

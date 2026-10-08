@@ -1,0 +1,7 @@
+{
+  "python.defaultInterpreterPath": "C:\\\\Python313\\\\python.exe",
+  "python.analysis.extraPaths": [
+    "C:\\\\Users\\\\Arihant\\\\AppData\\\\Roaming\\\\Python\\\\Python313\\\\site-packages",
+    "/backend"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "package_id": "sample_06_local_bread_missing_care",
+  "images": [
+    { "image_id": "img_bread", "label_side": "front", "width": 1920, "height": 1080 }
+  ],
+  "detections": [
+    { "detection_id": "d01", "source_image_id": "img_bread", "text": "Sunrise Premium Brown Bread", "confidence": 0.96, "bounding_box": { "x": 150, "y": 80, "width": 650, "height": 60 } },
+    { "detection_id": "d02", "source_image_id": "img_bread", "text": "Net Quantity: 400 g", "confidence": 0.95, "bounding_box": { "x": 150, "y": 160, "width": 310, "height": 40 } },
+    { "detection_id": "d03", "source_image_id": "img_bread", "text": "MRP ₹ 45.00 (inclusive of all taxes)", "confidence": 0.97, "bounding_box": { "x": 150, "y": 220, "width": 520, "height": 42 } },
+    { "detection_id": "d04", "source_image_id": "img_bread", "text": "Mfd By: Sunrise Bakers, Plot 14, MIDC Industrial Area, Pune 411019", "confidence": 0.91, "bounding_box": { "x": 150, "y": 280, "width": 1050, "height": 45 } },
+    { "detection_id": "d05", "source_image_id": "img_bread", "text": "Date of Pkg: 10/05/2026", "confidence": 0.94, "bounding_box": { "x": 150, "y": 350, "width": 340, "height": 36 } },
+    { "detection_id": "d06", "source_image_id": "img_bread", "text": "Use within 4 days of packaging", "confidence": 0.90, "bounding_box": { "x": 150, "y": 410, "width": 420, "height": 35 } }
+  ]
+}

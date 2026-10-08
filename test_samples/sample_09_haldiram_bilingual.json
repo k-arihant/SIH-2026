@@ -1,0 +1,17 @@
+{
+  "package_id": "sample_09_haldiram_bilingual",
+  "images": [
+    { "image_id": "img_front", "label_side": "front", "width": 1920, "height": 1080 }
+  ],
+  "detections": [
+    { "detection_id": "d01", "source_image_id": "img_front", "text": "Haldiram's Nagpur BHUJIA SEV / भुजिया सेव", "confidence": 0.94, "bounding_box": { "x": 120, "y": 90, "width": 850, "height": 60 } },
+    { "detection_id": "d02", "source_image_id": "img_front", "text": "नमकीन / Traditional Indian Snack", "confidence": 0.89, "bounding_box": { "x": 150, "y": 170, "width": 550, "height": 38 } },
+    { "detection_id": "d03", "source_image_id": "img_front", "text": "Net Weight / शुद्ध वजन : 400 g", "confidence": 0.95, "bounding_box": { "x": 100, "y": 300, "width": 450, "height": 40 } },
+    { "detection_id": "d04", "source_image_id": "img_front", "text": "अधिकतम खुदरा मूल्य / MRP Rs. 110.00 (Incl. of all taxes)", "confidence": 0.93, "bounding_box": { "x": 100, "y": 370, "width": 780, "height": 45 } },
+    { "detection_id": "d05", "source_image_id": "img_front", "text": "Mfg By: Haldiram Snacks Pvt. Ltd., B-1/H-8, Mohan Co-op Industrial Estate, Main Mathura Road, New Delhi-110044", "confidence": 0.92, "bounding_box": { "x": 100, "y": 440, "width": 1400, "height": 45 } },
+    { "detection_id": "d06", "source_image_id": "img_front", "text": "उत्पादन तिथि / PKD: 15/01/2026", "confidence": 0.94, "bounding_box": { "x": 100, "y": 510, "width": 380, "height": 35 } },
+    { "detection_id": "d07", "source_image_id": "img_front", "text": "उपभोग की अवधि / Best Before 6 Months from Manufacture", "confidence": 0.91, "bounding_box": { "x": 100, "y": 570, "width": 720, "height": 38 } },
+    { "detection_id": "d08", "source_image_id": "img_front", "text": "Email: support@haldirams.com Ph: 0120-2400111", "confidence": 0.95, "bounding_box": { "x": 100, "y": 630, "width": 680, "height": 36 } },
+    { "detection_id": "d09", "source_image_id": "img_front", "text": "Unit Sale Price: ₹ 0.275 per g", "confidence": 0.92, "bounding_box": { "x": 100, "y": 690, "width": 390, "height": 35 } }
+  ]
+}

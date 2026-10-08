@@ -1,0 +1,272 @@
+[
+  {
+    "package_id": "pkg_01_britannia_good_day",
+    "description": "Standard Clean Biscuit Pack with full declarations",
+    "images": [
+      { "image_id": "img_front", "label_side": "front", "width": 1920, "height": 1080 },
+      { "image_id": "img_back", "label_side": "back", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d01", "source_image_id": "img_front", "text": "BRITANNIA Good Day Butter Cookies", "confidence": 0.98, "bounding_box": { "x": 100, "y": 100, "width": 800, "height": 80 } },
+      { "detection_id": "d02", "source_image_id": "img_front", "text": "Smile More with Good Day!", "confidence": 0.95, "bounding_box": { "x": 120, "y": 200, "width": 500, "height": 40 } },
+      { "detection_id": "d03", "source_image_id": "img_front", "text": "Net Qty: 100 g", "confidence": 0.97, "bounding_box": { "x": 200, "y": 850, "width": 250, "height": 50 } },
+      { "detection_id": "d04", "source_image_id": "img_back", "text": "Mfd. by: Britannia Industries Ltd., 5/1A Hungerford St., Kolkata, WB - 700017", "confidence": 0.94, "bounding_box": { "x": 80, "y": 120, "width": 1100, "height": 45 } },
+      { "detection_id": "d05", "source_image_id": "img_back", "text": "PKD. 05/2026", "confidence": 0.96, "bounding_box": { "x": 80, "y": 200, "width": 220, "height": 40 } },
+      { "detection_id": "d06", "source_image_id": "img_back", "text": "MRP Rs. 20.00 (incl. of all taxes)", "confidence": 0.98, "bounding_box": { "x": 80, "y": 260, "width": 450, "height": 45 } },
+      { "detection_id": "d07", "source_image_id": "img_back", "text": "Best Before 6 months from packaging", "confidence": 0.92, "bounding_box": { "x": 80, "y": 330, "width": 480, "height": 38 } },
+      { "detection_id": "d08", "source_image_id": "img_back", "text": "Consumer Care: Call 1800-425-4449 or email feedback@britindia.com", "confidence": 0.95, "bounding_box": { "x": 80, "y": 400, "width": 900, "height": 40 } },
+      { "detection_id": "d09", "source_image_id": "img_back", "text": "Unit Sale Price: Rs 0.20 / g", "confidence": 0.93, "bounding_box": { "x": 80, "y": 460, "width": 320, "height": 35 } },
+      { "detection_id": "d10", "source_image_id": "img_back", "text": "Ingredients: Refined Wheat Flour (Maida), Sugar, Butter (2%), Edible Vegetable Oil", "confidence": 0.91, "bounding_box": { "x": 80, "y": 520, "width": 1200, "height": 60 } }
+    ]
+  },
+  {
+    "package_id": "pkg_02_maggi_noodles",
+    "description": "Maggi Noodles with Hindi/English text and symbol MRP",
+    "images": [
+      { "image_id": "img_pack", "label_side": "front", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d11", "source_image_id": "img_pack", "text": "MAGGI 2-Minute Noodles Masala", "confidence": 0.97, "bounding_box": { "x": 150, "y": 80, "width": 750, "height": 70 } },
+      { "detection_id": "d12", "source_image_id": "img_pack", "text": "Taste Bhi Health Bhi", "confidence": 0.94, "bounding_box": { "x": 200, "y": 170, "width": 400, "height": 35 } },
+      { "detection_id": "d13", "source_image_id": "img_pack", "text": "Generic Name: Instant Noodles", "confidence": 0.95, "bounding_box": { "x": 80, "y": 300, "width": 380, "height": 35 } },
+      { "detection_id": "d14", "source_image_id": "img_pack", "text": "Net Quantity: 70 g", "confidence": 0.96, "bounding_box": { "x": 80, "y": 350, "width": 260, "height": 38 } },
+      { "detection_id": "d15", "source_image_id": "img_pack", "text": "MRP ₹ 14.00 (INCL. OF ALL TAXES)", "confidence": 0.98, "bounding_box": { "x": 80, "y": 410, "width": 420, "height": 42 } },
+      { "detection_id": "d16", "source_image_id": "img_pack", "text": "USP: ₹ 0.20/g", "confidence": 0.91, "bounding_box": { "x": 80, "y": 470, "width": 210, "height": 32 } },
+      { "detection_id": "d17", "source_image_id": "img_pack", "text": "Manufactured by: Nestlé India Limited, 100/101, World Trade Centre, Barakhamba Lane, New Delhi-110001", "confidence": 0.94, "bounding_box": { "x": 80, "y": 520, "width": 1300, "height": 45 } },
+      { "detection_id": "d18", "source_image_id": "img_pack", "text": "MFD: 04/2026   USE BY: 9 MONTHS FROM MFD", "confidence": 0.93, "bounding_box": { "x": 80, "y": 590, "width": 600, "height": 36 } },
+      { "detection_id": "d19", "source_image_id": "img_pack", "text": "Call Nestlé Consumer Services at 1800-103-1947 or wecare@in.nestle.com", "confidence": 0.96, "bounding_box": { "x": 80, "y": 650, "width": 950, "height": 38 } }
+    ]
+  },
+  {
+    "package_id": "pkg_03_tata_salt_noisy",
+    "description": "Noisy OCR with corrupted symbols and fragmented punctuation",
+    "images": [
+      { "image_id": "img_salt", "label_side": "back", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d20", "source_image_id": "img_salt", "text": "TATA SALT - Desh Ka Namak", "confidence": 0.96, "bounding_box": { "x": 100, "y": 80, "width": 600, "height": 50 } },
+      { "detection_id": "d21", "source_image_id": "img_salt", "text": "COMMODITY : IODISED SALT", "confidence": 0.92, "bounding_box": { "x": 100, "y": 150, "width": 450, "height": 40 } },
+      { "detection_id": "d22", "source_image_id": "img_salt", "text": "Net Wt . : 1 kg ( 1000 g )", "confidence": 0.88, "bounding_box": { "x": 100, "y": 210, "width": 380, "height": 38 } },
+      { "detection_id": "d23", "source_image_id": "img_salt", "text": "M.R.P. ` 28.00 ( incl . of all taxes )", "confidence": 0.87, "bounding_box": { "x": 100, "y": 270, "width": 510, "height": 40 } },
+      { "detection_id": "d24", "source_image_id": "img_salt", "text": "Mfd & Pkd by : Tata Consumer Products Limited , 1 , Bishop Lefroy Road , Kolkata 700020", "confidence": 0.91, "bounding_box": { "x": 100, "y": 330, "width": 1250, "height": 45 } },
+      { "detection_id": "d25", "source_image_id": "img_salt", "text": "PKD : 02 / 2026", "confidence": 0.94, "bounding_box": { "x": 100, "y": 400, "width": 240, "height": 35 } },
+      { "detection_id": "d26", "source_image_id": "img_salt", "text": "For feedback / complaints write to : care@tataconsumer.com or Tel : 1800-345-1720", "confidence": 0.93, "bounding_box": { "x": 100, "y": 460, "width": 1050, "height": 40 } }
+    ]
+  },
+  {
+    "package_id": "pkg_04_haldiram_bhujia_bilingual",
+    "description": "Bilingual Hindi + English snack pack",
+    "images": [
+      { "image_id": "img_front", "label_side": "front", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d27", "source_image_id": "img_front", "text": "Haldiram's Nagpur BHUJIA SEV / भुजिया सेव", "confidence": 0.94, "bounding_box": { "x": 120, "y": 90, "width": 850, "height": 60 } },
+      { "detection_id": "d28", "source_image_id": "img_front", "text": "नमकीन / Traditional Indian Snack", "confidence": 0.89, "bounding_box": { "x": 150, "y": 170, "width": 550, "height": 38 } },
+      { "detection_id": "d29", "source_image_id": "img_front", "text": "Net Weight / शुद्ध वजन : 400 g", "confidence": 0.95, "bounding_box": { "x": 100, "y": 300, "width": 450, "height": 40 } },
+      { "detection_id": "d30", "source_image_id": "img_front", "text": "अधिकतम खुदरा मूल्य / MRP Rs. 110.00 (Incl. of all taxes)", "confidence": 0.93, "bounding_box": { "x": 100, "y": 370, "width": 780, "height": 45 } },
+      { "detection_id": "d31", "source_image_id": "img_front", "text": "Mfg By: Haldiram Snacks Pvt. Ltd., B-1/H-8, Mohan Co-op Industrial Estate, Main Mathura Road, New Delhi-110044", "confidence": 0.92, "bounding_box": { "x": 100, "y": 440, "width": 1400, "height": 45 } },
+      { "detection_id": "d32", "source_image_id": "img_front", "text": "उत्पादन तिथि / PKD: 15/01/2026", "confidence": 0.94, "bounding_box": { "x": 100, "y": 510, "width": 380, "height": 35 } },
+      { "detection_id": "d33", "source_image_id": "img_front", "text": "उपभोग की अवधि / Best Before 6 Months from Manufacture", "confidence": 0.91, "bounding_box": { "x": 100, "y": 570, "width": 720, "height": 38 } },
+      { "detection_id": "d34", "source_image_id": "img_front", "text": "Email: support@haldirams.com Ph: 0120-2400111", "confidence": 0.95, "bounding_box": { "x": 100, "y": 630, "width": 680, "height": 36 } },
+      { "detection_id": "d35", "source_image_id": "img_front", "text": "Unit Sale Price: ₹ 0.275 per g", "confidence": 0.92, "bounding_box": { "x": 100, "y": 690, "width": 390, "height": 35 } }
+    ]
+  },
+  {
+    "package_id": "pkg_05_ferrero_imported",
+    "description": "Imported commodity with Country of Origin & Importer details",
+    "images": [
+      { "image_id": "img_box", "label_side": "back", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d36", "source_image_id": "img_box", "text": "FERRERO ROCHER Crispy Hazelnut Chocolates", "confidence": 0.98, "bounding_box": { "x": 120, "y": 100, "width": 900, "height": 60 } },
+      { "detection_id": "d37", "source_image_id": "img_box", "text": "Country of Origin: Italy", "confidence": 0.97, "bounding_box": { "x": 100, "y": 200, "width": 360, "height": 40 } },
+      { "detection_id": "d38", "source_image_id": "img_box", "text": "Manufactured by: Ferrero Industriale Italia S.r.l., P.le P. Ferrero 1, 12051 Alba (CN), Italy", "confidence": 0.92, "bounding_box": { "x": 100, "y": 260, "width": 1200, "height": 45 } },
+      { "detection_id": "d39", "source_image_id": "img_box", "text": "Imported and Marketed by: Ferrero India Pvt. Ltd., World Trade Centre, Tower 3, Kharadi, Pune 411014", "confidence": 0.95, "bounding_box": { "x": 100, "y": 330, "width": 1350, "height": 48 } },
+      { "detection_id": "d40", "source_image_id": "img_box", "text": "Net Quantity: 200 g (16 Pieces)", "confidence": 0.96, "bounding_box": { "x": 100, "y": 400, "width": 420, "height": 40 } },
+      { "detection_id": "d41", "source_image_id": "img_box", "text": "Date of Import: FEB 2026", "confidence": 0.94, "bounding_box": { "x": 100, "y": 460, "width": 320, "height": 38 } },
+      { "detection_id": "d42", "source_image_id": "img_box", "text": "EXPIRY: 30/11/2026", "confidence": 0.96, "bounding_box": { "x": 100, "y": 520, "width": 280, "height": 35 } },
+      { "detection_id": "d43", "source_image_id": "img_box", "text": "M.R.P. Rs. 549.00 (Inclusive of all taxes)", "confidence": 0.97, "bounding_box": { "x": 100, "y": 580, "width": 540, "height": 42 } },
+      { "detection_id": "d44", "source_image_id": "img_box", "text": "Consumer Grievance: customercare.india@ferrero.com or Toll Free 1800 209 1200", "confidence": 0.95, "bounding_box": { "x": 100, "y": 640, "width": 1080, "height": 40 } },
+      { "detection_id": "d45", "source_image_id": "img_box", "text": "Unit Sale Price: ₹ 34.31 / Piece", "confidence": 0.91, "bounding_box": { "x": 100, "y": 700, "width": 380, "height": 35 } }
+    ]
+  },
+  {
+    "package_id": "pkg_06_dettol_refill_liquid",
+    "description": "Liquid volume in millilitres and cosmetic category",
+    "images": [
+      { "image_id": "img_pouch", "label_side": "back", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d46", "source_image_id": "img_pouch", "text": "Dettol Liquid Handwash Refill Original", "confidence": 0.97, "bounding_box": { "x": 100, "y": 80, "width": 780, "height": 55 } },
+      { "detection_id": "d47", "source_image_id": "img_pouch", "text": "Common Commodity Name: Liquid Hand Wash", "confidence": 0.94, "bounding_box": { "x": 100, "y": 160, "width": 600, "height": 38 } },
+      { "detection_id": "d48", "source_image_id": "img_pouch", "text": "Net Volume: 750 ml", "confidence": 0.98, "bounding_box": { "x": 100, "y": 220, "width": 300, "height": 42 } },
+      { "detection_id": "d49", "source_image_id": "img_pouch", "text": "M.R.P. ₹ 119.00 (incl. of all taxes)", "confidence": 0.98, "bounding_box": { "x": 100, "y": 280, "width": 450, "height": 42 } },
+      { "detection_id": "d50", "source_image_id": "img_pouch", "text": "Unit Sale Price: ₹ 0.16/ml", "confidence": 0.92, "bounding_box": { "x": 100, "y": 340, "width": 320, "height": 35 } },
+      { "detection_id": "d51", "source_image_id": "img_pouch", "text": "Mfg Date: 03/26   Best Before: 24 months from mfg date", "confidence": 0.93, "bounding_box": { "x": 100, "y": 400, "width": 750, "height": 38 } },
+      { "detection_id": "d52", "source_image_id": "img_pouch", "text": "Mfd. by: Reckitt Benckiser (India) Pvt. Ltd., Plot No. 1, Sector 100, Gurugram, Haryana - 122001", "confidence": 0.93, "bounding_box": { "x": 100, "y": 460, "width": 1280, "height": 45 } },
+      { "detection_id": "d53", "source_image_id": "img_pouch", "text": "Toll Free: 1800-102-7245, care@reckitt.com", "confidence": 0.95, "bounding_box": { "x": 100, "y": 530, "width": 640, "height": 38 } },
+      { "detection_id": "d54", "source_image_id": "img_pouch", "text": "100% Recyclable Pouch", "confidence": 0.90, "bounding_box": { "x": 100, "y": 600, "width": 350, "height": 35 } }
+    ]
+  },
+  {
+    "package_id": "pkg_07_cadbury_dairy_milk",
+    "description": "Short code dates and abbreviation variants",
+    "images": [
+      { "image_id": "img_choc", "label_side": "back", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d55", "source_image_id": "img_choc", "text": "Cadbury Dairy Milk Chocolate", "confidence": 0.99, "bounding_box": { "x": 80, "y": 60, "width": 620, "height": 50 } },
+      { "detection_id": "d56", "source_image_id": "img_choc", "text": "Net Wt: 50 g", "confidence": 0.96, "bounding_box": { "x": 80, "y": 130, "width": 210, "height": 38 } },
+      { "detection_id": "d57", "source_image_id": "img_choc", "text": "Mfd. & Pkd. by: Mondelez India Foods Pvt Ltd, Unit No. 2001, Tower 3, Indiabulls Finance Centre, Mumbai 400013", "confidence": 0.94, "bounding_box": { "x": 80, "y": 190, "width": 1350, "height": 45 } },
+      { "detection_id": "d58", "source_image_id": "img_choc", "text": "Mfd: 12/25  Exp: 12/26", "confidence": 0.95, "bounding_box": { "x": 80, "y": 260, "width": 350, "height": 35 } },
+      { "detection_id": "d59", "source_image_id": "img_choc", "text": "MRP Rs 45/- (incl. taxes)", "confidence": 0.94, "bounding_box": { "x": 80, "y": 320, "width": 380, "height": 40 } },
+      { "detection_id": "d60", "source_image_id": "img_choc", "text": "Consumer care: 1800 22 7080, suggestions@mdlz.com", "confidence": 0.96, "bounding_box": { "x": 80, "y": 380, "width": 780, "height": 38 } },
+      { "detection_id": "d61", "source_image_id": "img_choc", "text": "Cocoa Life sustainability program", "confidence": 0.88, "bounding_box": { "x": 80, "y": 450, "width": 450, "height": 35 } }
+    ]
+  },
+  {
+    "package_id": "pkg_08_parle_g_missing_tax",
+    "description": "Missing 'incl. of all taxes' in MRP (critical negative case)",
+    "images": [
+      { "image_id": "img_front", "label_side": "front", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d62", "source_image_id": "img_front", "text": "Parle-G Original Gluco Biscuits", "confidence": 0.98, "bounding_box": { "x": 100, "y": 80, "width": 700, "height": 60 } },
+      { "detection_id": "d63", "source_image_id": "img_front", "text": "Net Wt. 65 g", "confidence": 0.95, "bounding_box": { "x": 100, "y": 170, "width": 220, "height": 38 } },
+      { "detection_id": "d64", "source_image_id": "img_front", "text": "MRP Rs. 10.00", "confidence": 0.97, "bounding_box": { "x": 100, "y": 230, "width": 250, "height": 40 } },
+      { "detection_id": "d65", "source_image_id": "img_front", "text": "Mfd by: Parle Products Pvt Ltd, V.S. Khandekar Marg, Vile Parle East, Mumbai-400057", "confidence": 0.93, "bounding_box": { "x": 100, "y": 300, "width": 1200, "height": 45 } },
+      { "detection_id": "d66", "source_image_id": "img_front", "text": "PKD: 01/26", "confidence": 0.96, "bounding_box": { "x": 100, "y": 370, "width": 200, "height": 35 } },
+      { "detection_id": "d67", "source_image_id": "img_front", "text": "Best Before 6 Months", "confidence": 0.92, "bounding_box": { "x": 100, "y": 420, "width": 320, "height": 35 } },
+      { "detection_id": "d68", "source_image_id": "img_front", "text": "Customer Care: 022-66916911 cs@parle.biz", "confidence": 0.95, "bounding_box": { "x": 100, "y": 480, "width": 620, "height": 36 } }
+    ]
+  },
+  {
+    "package_id": "pkg_09_local_bread_missing_care",
+    "description": "Local bakery bread missing Consumer Care details",
+    "images": [
+      { "image_id": "img_bread", "label_side": "front", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d69", "source_image_id": "img_bread", "text": "Sunrise Premium Brown Bread", "confidence": 0.96, "bounding_box": { "x": 150, "y": 80, "width": 650, "height": 60 } },
+      { "detection_id": "d70", "source_image_id": "img_bread", "text": "Net Quantity: 400 g", "confidence": 0.95, "bounding_box": { "x": 150, "y": 160, "width": 310, "height": 40 } },
+      { "detection_id": "d71", "source_image_id": "img_bread", "text": "MRP ₹ 45.00 (inclusive of all taxes)", "confidence": 0.97, "bounding_box": { "x": 150, "y": 220, "width": 520, "height": 42 } },
+      { "detection_id": "d72", "source_image_id": "img_bread", "text": "Mfd By: Sunrise Bakers, Plot 14, MIDC Industrial Area, Pune 411019", "confidence": 0.91, "bounding_box": { "x": 150, "y": 280, "width": 1050, "height": 45 } },
+      { "detection_id": "d73", "source_image_id": "img_bread", "text": "Date of Pkg: 10/05/2026", "confidence": 0.94, "bounding_box": { "x": 150, "y": 350, "width": 340, "height": 36 } },
+      { "detection_id": "d74", "source_image_id": "img_bread", "text": "Use within 4 days of packaging", "confidence": 0.90, "bounding_box": { "x": 150, "y": 410, "width": 420, "height": 35 } }
+    ]
+  },
+  {
+    "package_id": "pkg_10_colgate_combo_pack",
+    "description": "Multi-piece combo pack requiring unit sale price",
+    "images": [
+      { "image_id": "img_combo", "label_side": "back", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d75", "source_image_id": "img_combo", "text": "Colgate Strong Teeth Toothpaste", "confidence": 0.98, "bounding_box": { "x": 100, "y": 80, "width": 720, "height": 55 } },
+      { "detection_id": "d76", "source_image_id": "img_combo", "text": "Generic Name: Toothpaste", "confidence": 0.95, "bounding_box": { "x": 100, "y": 150, "width": 380, "height": 36 } },
+      { "detection_id": "d77", "source_image_id": "img_combo", "text": "Net Qty: 300 g (2 x 150 g Save Pack)", "confidence": 0.96, "bounding_box": { "x": 100, "y": 210, "width": 550, "height": 40 } },
+      { "detection_id": "d78", "source_image_id": "img_combo", "text": "MRP: Rs. 195.00 (inclusive of all taxes)", "confidence": 0.98, "bounding_box": { "x": 100, "y": 270, "width": 560, "height": 42 } },
+      { "detection_id": "d79", "source_image_id": "img_combo", "text": "Unit Sale Price: Rs. 0.65 / g", "confidence": 0.94, "bounding_box": { "x": 100, "y": 330, "width": 360, "height": 35 } },
+      { "detection_id": "d80", "source_image_id": "img_combo", "text": "Mfd by: Colgate-Palmolive (India) Ltd, B-306, Main Road, Sanand, Gujarat 382170", "confidence": 0.93, "bounding_box": { "x": 100, "y": 390, "width": 1250, "height": 45 } },
+      { "detection_id": "d81", "source_image_id": "img_combo", "text": "Mfd: 01/26  Best Before 24 months from mfd", "confidence": 0.92, "bounding_box": { "x": 100, "y": 460, "width": 640, "height": 36 } },
+      { "detection_id": "d82", "source_image_id": "img_combo", "text": "Grievance Redressal: Consumeraffairs_india@colpal.com, 1800-225599", "confidence": 0.95, "bounding_box": { "x": 100, "y": 520, "width": 1020, "height": 40 } }
+    ]
+  },
+  {
+    "package_id": "pkg_11_amul_butter",
+    "description": "Amul butter with refrigerated use-by instructions",
+    "images": [
+      { "image_id": "img_butter", "label_side": "front", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d83", "source_image_id": "img_butter", "text": "Amul Pasteurised Butter", "confidence": 0.99, "bounding_box": { "x": 120, "y": 90, "width": 580, "height": 55 } },
+      { "detection_id": "d84", "source_image_id": "img_butter", "text": "Utterly Butterly Delicious", "confidence": 0.94, "bounding_box": { "x": 140, "y": 160, "width": 450, "height": 35 } },
+      { "detection_id": "d85", "source_image_id": "img_butter", "text": "Generic Name: Table Butter", "confidence": 0.95, "bounding_box": { "x": 100, "y": 260, "width": 400, "height": 38 } },
+      { "detection_id": "d86", "source_image_id": "img_butter", "text": "Net Quantity: 100 g", "confidence": 0.97, "bounding_box": { "x": 100, "y": 320, "width": 310, "height": 40 } },
+      { "detection_id": "d87", "source_image_id": "img_butter", "text": "MRP ₹ 56.00 (Incl. of all taxes)", "confidence": 0.98, "bounding_box": { "x": 100, "y": 380, "width": 450, "height": 42 } },
+      { "detection_id": "d88", "source_image_id": "img_butter", "text": "Marketed by: Gujarat Co-operative Milk Marketing Federation Ltd., Anand 388001, Gujarat", "confidence": 0.93, "bounding_box": { "x": 100, "y": 440, "width": 1300, "height": 45 } },
+      { "detection_id": "d89", "source_image_id": "img_butter", "text": "PKD: 03/2026   Use by 9 months from pkg date when stored below 4°C", "confidence": 0.92, "bounding_box": { "x": 100, "y": 510, "width": 950, "height": 38 } },
+      { "detection_id": "d90", "source_image_id": "img_butter", "text": "Toll Free: 1800 258 3333, customercare@amul.coop", "confidence": 0.96, "bounding_box": { "x": 100, "y": 570, "width": 720, "height": 38 } }
+    ]
+  },
+  {
+    "package_id": "pkg_12_blurry_corrupted_snack",
+    "description": "Heavy OCR corruption (O for 0, missing letters, unclear address)",
+    "images": [
+      { "image_id": "img_noisy", "label_side": "back", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d91", "source_image_id": "img_noisy", "text": "Crispo Kurkure Masala Munch", "confidence": 0.85, "bounding_box": { "x": 100, "y": 70, "width": 650, "height": 50 } },
+      { "detection_id": "d92", "source_image_id": "img_noisy", "text": "Net W+: 45g", "confidence": 0.62, "bounding_box": { "x": 100, "y": 140, "width": 220, "height": 35 } },
+      { "detection_id": "d93", "source_image_id": "img_noisy", "text": "M.R.P Rs 2O.OO (inc|. of a|| taxes)", "confidence": 0.65, "bounding_box": { "x": 100, "y": 200, "width": 540, "height": 40 } },
+      { "detection_id": "d94", "source_image_id": "img_noisy", "text": "Mfd by: ...Ind. Estate, Guj 382", "confidence": 0.58, "bounding_box": { "x": 100, "y": 270, "width": 600, "height": 38 } },
+      { "detection_id": "d95", "source_image_id": "img_noisy", "text": "PKD: ??/26", "confidence": 0.50, "bounding_box": { "x": 100, "y": 330, "width": 200, "height": 32 } }
+    ]
+  },
+  {
+    "package_id": "pkg_13_boat_earphones_electronic",
+    "description": "Electronic commodity (Non-food, Unit count, imported, no expiry)",
+    "images": [
+      { "image_id": "img_box", "label_side": "back", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d96", "source_image_id": "img_box", "text": "boAt Rockerz 255 Pro+", "confidence": 0.98, "bounding_box": { "x": 80, "y": 80, "width": 550, "height": 55 } },
+      { "detection_id": "d97", "source_image_id": "img_box", "text": "Generic Name: Bluetooth Wireless Earphones", "confidence": 0.96, "bounding_box": { "x": 80, "y": 160, "width": 680, "height": 38 } },
+      { "detection_id": "d98", "source_image_id": "img_box", "text": "Net Quantity: 1 Unit", "confidence": 0.97, "bounding_box": { "x": 80, "y": 220, "width": 290, "height": 38 } },
+      { "detection_id": "d99", "source_image_id": "img_box", "text": "Country of Origin: China", "confidence": 0.98, "bounding_box": { "x": 80, "y": 280, "width": 360, "height": 38 } },
+      { "detection_id": "d100", "source_image_id": "img_box", "text": "Imported and Marketed by: Imagine Marketing Limited, Unit 505, Supreme Chambers, Andheri West, Mumbai-400053", "confidence": 0.94, "bounding_box": { "x": 80, "y": 340, "width": 1400, "height": 45 } },
+      { "detection_id": "d101", "source_image_id": "img_box", "text": "Month & Year of Import: 01/2026", "confidence": 0.95, "bounding_box": { "x": 80, "y": 410, "width": 450, "height": 35 } },
+      { "detection_id": "d102", "source_image_id": "img_box", "text": "Maximum Retail Price (MRP): ₹ 2,990.00 (inclusive of all taxes)", "confidence": 0.97, "bounding_box": { "x": 80, "y": 470, "width": 850, "height": 42 } },
+      { "detection_id": "d103", "source_image_id": "img_box", "text": "Customer Complaint cell: info@imaginemarketingindia.com, Contact: 022-6918-1920", "confidence": 0.95, "bounding_box": { "x": 80, "y": 530, "width": 1150, "height": 40 } }
+    ]
+  },
+  {
+    "package_id": "pkg_14_nivea_cream_cosmetic",
+    "description": "Cosmetic commodity with volume and batch details",
+    "images": [
+      { "image_id": "img_tub", "label_side": "back", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d104", "source_image_id": "img_tub", "text": "NIVEA Soft Light Moisturiser Cream", "confidence": 0.98, "bounding_box": { "x": 100, "y": 80, "width": 750, "height": 55 } },
+      { "detection_id": "d105", "source_image_id": "img_tub", "text": "Net Vol: 100 ml", "confidence": 0.96, "bounding_box": { "x": 100, "y": 160, "width": 260, "height": 38 } },
+      { "detection_id": "d106", "source_image_id": "img_tub", "text": "MRP Rs 210 (inclusive of all taxes)", "confidence": 0.97, "bounding_box": { "x": 100, "y": 220, "width": 510, "height": 40 } },
+      { "detection_id": "d107", "source_image_id": "img_tub", "text": "Mfd By: Nivea India Pvt. Ltd., SM-9/1, Sanand II Industrial Estate, GIDC, Sanand, Ahmedabad, Gujarat 382110", "confidence": 0.94, "bounding_box": { "x": 100, "y": 280, "width": 1350, "height": 45 } },
+      { "detection_id": "d108", "source_image_id": "img_tub", "text": "Mfd: 02/2026   Use before: 30 months from mfg date", "confidence": 0.93, "bounding_box": { "x": 100, "y": 350, "width": 720, "height": 36 } },
+      { "detection_id": "d109", "source_image_id": "img_tub", "text": "Consumer Care: care@nivea.in or 022-62487999", "confidence": 0.96, "bounding_box": { "x": 100, "y": 410, "width": 680, "height": 38 } },
+      { "detection_id": "d110", "source_image_id": "img_tub", "text": "Dermatologically approved", "confidence": 0.91, "bounding_box": { "x": 100, "y": 470, "width": 380, "height": 32 } }
+    ]
+  },
+  {
+    "package_id": "pkg_15_saffola_gold_oil",
+    "description": "Edible oil with Litres volume and dual mass declaration",
+    "images": [
+      { "image_id": "img_jar", "label_side": "back", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d111", "source_image_id": "img_jar", "text": "Saffola Gold Pro Healthy Heart", "confidence": 0.97, "bounding_box": { "x": 120, "y": 80, "width": 680, "height": 55 } },
+      { "detection_id": "d112", "source_image_id": "img_jar", "text": "Generic Name: Blended Edible Vegetable Oil", "confidence": 0.95, "bounding_box": { "x": 100, "y": 160, "width": 650, "height": 38 } },
+      { "detection_id": "d113", "source_image_id": "img_jar", "text": "Net Quantity: 1 L (Net Mass: 910 g)", "confidence": 0.96, "bounding_box": { "x": 100, "y": 220, "width": 520, "height": 40 } },
+      { "detection_id": "d114", "source_image_id": "img_jar", "text": "MRP Rs. 175.00 (incl. of all taxes)", "confidence": 0.98, "bounding_box": { "x": 100, "y": 280, "width": 500, "height": 42 } },
+      { "detection_id": "d115", "source_image_id": "img_jar", "text": "Unit Sale Price: Rs. 175.00/L", "confidence": 0.94, "bounding_box": { "x": 100, "y": 340, "width": 360, "height": 35 } },
+      { "detection_id": "d116", "source_image_id": "img_jar", "text": "Mfd. by: Marico Limited, Grande Palladium, 175 CST Road, Kalina, Santacruz (East), Mumbai 400098", "confidence": 0.94, "bounding_box": { "x": 100, "y": 400, "width": 1380, "height": 45 } },
+      { "detection_id": "d117", "source_image_id": "img_jar", "text": "PKD: 03/2026   Best Before: 9 Months from Packaging", "confidence": 0.92, "bounding_box": { "x": 100, "y": 470, "width": 780, "height": 36 } },
+      { "detection_id": "d118", "source_image_id": "img_jar", "text": "Consumer Grievance: ccc@marico.com, Toll Free: 1800 22 2248", "confidence": 0.96, "bounding_box": { "x": 100, "y": 530, "width": 920, "height": 38 } }
+    ]
+  },
+  {
+    "package_id": "pkg_16_everest_turmeric_spice",
+    "description": "Spice packet with batch code and uppercase declarations",
+    "images": [
+      { "image_id": "img_carton", "label_side": "back", "width": 1920, "height": 1080 }
+    ],
+    "detections": [
+      { "detection_id": "d119", "source_image_id": "img_carton", "text": "EVEREST TURMERIC POWDER / हल्दी पाउडर", "confidence": 0.97, "bounding_box": { "x": 100, "y": 80, "width": 800, "height": 60 } },
+      { "detection_id": "d120", "source_image_id": "img_carton", "text": "NET WT: 100 g", "confidence": 0.96, "bounding_box": { "x": 100, "y": 160, "width": 240, "height": 38 } },
+      { "detection_id": "d121", "source_image_id": "img_carton", "text": "BATCH NO: TP-402", "confidence": 0.94, "bounding_box": { "x": 100, "y": 220, "width": 280, "height": 35 } },
+      { "detection_id": "d122", "source_image_id": "img_carton", "text": "PKD: 03/26   BEST BEFORE 12 MONTHS FROM PACKAGING", "confidence": 0.93, "bounding_box": { "x": 100, "y": 280, "width": 850, "height": 38 } },
+      { "detection_id": "d123", "source_image_id": "img_carton", "text": "MRP Rs. 35.00 (INCLUSIVE OF ALL TAXES)", "confidence": 0.98, "bounding_box": { "x": 100, "y": 340, "width": 600, "height": 42 } },
+      { "detection_id": "d124", "source_image_id": "img_carton", "text": "Mfd & Pkd by: S.Everest Food Products Pvt. Ltd., D.N. Nagar, Andheri West, Mumbai-400053", "confidence": 0.94, "bounding_box": { "x": 100, "y": 410, "width": 1280, "height": 45 } },
+      { "detection_id": "d125", "source_image_id": "img_carton", "text": "Customer Care: 022-26241111 or customercare@everestspices.com", "confidence": 0.95, "bounding_box": { "x": 100, "y": 480, "width": 950, "height": 38 } }
+    ]
+  }
+]

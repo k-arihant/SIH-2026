@@ -1,0 +1,254 @@
+{
+  "package_id": "pkg_karachi_bakery_001",
+  "overall_status": "FAIL",
+  "overall_score": 80.0,
+  "summary": {
+    "total_rules": 10,
+    "applicable_rules": 10,
+    "passed": 8,
+    "failed": 1,
+    "uncertain": 1,
+    "not_applicable": 0
+  },
+  "rule_evaluations": [
+    {
+      "rule_id": "6(1)(a)",
+      "rule_name": "Name and Complete Address of Manufacturer / Packer / Importer",
+      "status": "PASS",
+      "reason": "Valid manufacturer/packer/importer declaration found: '(DD). Karachi bakery Pearl Pvt Limited Survey No 240, Shed N...'",
+      "extracted_value": "(DD). Karachi bakery Pearl Pvt Limited Survey No 240, Shed No.4, Pedamma Gadda, Rajendra Nagar Mandal, Gaganpahad Village, Ranga Reddy Dist., Telangana, India. PIN-500030",
+      "evidence": [
+        {
+          "detection_id": "det_001, det_002",
+          "source_text": "(DD). Karachi bakery Pearl Pvt Limited Survey No 240, Shed No.4, Pedamma Gadda, Rajendra Nagar Mandal, Gaganpahad Village, Ranga Reddy Dist., Telangana, India. PIN-500030",
+          "source_image_id": null,
+          "bounding_box": null,
+          "confidence": null
+        }
+      ],
+      "confidence": 0.95,
+      "details": {}
+    },
+    {
+      "rule_id": "6(1)(b)",
+      "rule_name": "Generic or Common Commodity Name",
+      "status": "FAIL",
+      "reason": "Generic or common commodity name declaration is missing.",
+      "extracted_value": null,
+      "evidence": [],
+      "confidence": 1.0,
+      "details": {}
+    },
+    {
+      "rule_id": "6(1)(c)",
+      "rule_name": "Net Quantity in Standard Units",
+      "status": "PASS",
+      "reason": "Net quantity declaration found as 400 g.",
+      "extracted_value": "400 g",
+      "evidence": [
+        {
+          "detection_id": "det_008, det_009",
+          "source_text": "Net Quantity: 400g",
+          "source_image_id": null,
+          "bounding_box": null,
+          "confidence": null
+        }
+      ],
+      "confidence": 0.98,
+      "details": {
+        "numeric_value": 400.0,
+        "unit": "g"
+      }
+    },
+    {
+      "rule_id": "6(1)(d)",
+      "rule_name": "Month and Year of Manufacture / Packing / Import",
+      "status": "PASS",
+      "reason": "Valid manufacturing/packing/import date found: 'AUG.2026'.",
+      "extracted_value": "AUG.2026",
+      "evidence": [
+        {
+          "detection_id": "det_013, det_014",
+          "source_text": "PACKED ON: 26.AUG.2026",
+          "source_image_id": null,
+          "bounding_box": null,
+          "confidence": null
+        }
+      ],
+      "confidence": 0.96,
+      "details": {
+        "parsed_date": "AUG.2026",
+        "raw_text": "PACKED ON: 26.AUG.2026"
+      }
+    },
+    {
+      "rule_id": "6(1)(e)",
+      "rule_name": "Maximum Retail Price (MRP) Inclusive of All Taxes",
+      "status": "PASS",
+      "reason": "Valid MRP declaration found: ₹ 220.00 (inclusive of all taxes).",
+      "extracted_value": "₹ 220.00 (incl. of all taxes)",
+      "evidence": [
+        {
+          "detection_id": "det_010, det_011",
+          "source_text": "MRP in (₹): (Incl. of all taxes) 220.00",
+          "source_image_id": null,
+          "bounding_box": null,
+          "confidence": null
+        }
+      ],
+      "confidence": 0.98,
+      "details": {
+        "numeric_value": 220.0,
+        "tax_inclusive_mentioned": true
+      }
+    },
+    {
+      "rule_id": "6(1)(f)",
+      "rule_name": "Best Before / Expiry Date",
+      "status": "PASS",
+      "reason": "Best before / expiry declaration declared: 'USE BY DATE : 25.JAN.2027'.",
+      "extracted_value": "USE BY DATE : 25.JAN.2027",
+      "evidence": [
+        {
+          "detection_id": "det_015, det_016",
+          "source_text": "USE BY DATE : 25.JAN.2027",
+          "source_image_id": null,
+          "bounding_box": null,
+          "confidence": null
+        }
+      ],
+      "confidence": 0.95,
+      "details": {}
+    },
+    {
+      "rule_id": "6(1)(g)",
+      "rule_name": "Consumer Care / Grievance Redressal Details",
+      "status": "PASS",
+      "reason": "Consumer care details declared (Email: info@karachibakery.com).",
+      "extracted_value": "For Customer Complaints or Feedback/Suggestions/Queries, Please Contact Our Executive Customer Care No: +9140 66660909, or Mail us: info@karachibakery.com, or Write to us at Following Address, Karachi Bakery, 6-3-190, Khanchand Towers, Road No 1, Banjara Hills, Hyderabad-500034, (T.S.) India.",
+      "evidence": [
+        {
+          "detection_id": "det_006",
+          "source_text": "For Customer Complaints or Feedback/Suggestions/Queries, Please Contact Our Executive Customer Care No: +9140 66660909, or Mail us: info@karachibakery.com, or Write to us at Following Address, Karachi Bakery, 6-3-190, Khanchand Towers, Road No 1, Banjara Hills, Hyderabad-500034, (T.S.) India.",
+          "source_image_id": null,
+          "bounding_box": null,
+          "confidence": null
+        }
+      ],
+      "confidence": 0.98,
+      "details": {
+        "phones": [],
+        "emails": [
+          "info@karachibakery.com"
+        ]
+      }
+    },
+    {
+      "rule_id": "6(1)(h)",
+      "rule_name": "Country of Origin for Imported Goods",
+      "status": "PASS",
+      "reason": "Country of origin declared as 'PRODUCT OF INDIA'.",
+      "extracted_value": "PRODUCT OF INDIA",
+      "evidence": [
+        {
+          "detection_id": "det_007",
+          "source_text": "PRODUCT OF INDIA",
+          "source_image_id": null,
+          "bounding_box": null,
+          "confidence": null
+        }
+      ],
+      "confidence": 0.98,
+      "details": {
+        "country_of_origin": "PRODUCT OF INDIA",
+        "is_imported": true
+      }
+    },
+    {
+      "rule_id": "6(1)(i)",
+      "rule_name": "Unit Sale Price",
+      "status": "PASS",
+      "reason": "Unit sale price declaration found: 'USP . RS . 0.55/g'.",
+      "extracted_value": "USP . RS . 0.55/g",
+      "evidence": [
+        {
+          "detection_id": "det_011",
+          "source_text": "USP . RS . 0.55/g",
+          "source_image_id": null,
+          "bounding_box": null,
+          "confidence": null
+        }
+      ],
+      "confidence": 0.95,
+      "details": {}
+    },
+    {
+      "rule_id": "6(3)",
+      "rule_name": "Minimum Height of Numerals and Letters",
+      "status": "UNCERTAIN",
+      "reason": "No physical reference object (e.g., standard EAN-13 barcode) detected in OCR to establish real-world pixel-to-millimeter scale. Physical inspection required.",
+      "extracted_value": null,
+      "evidence": [],
+      "confidence": 0.5,
+      "details": {}
+    }
+  ],
+  "evidence": [
+    {
+      "detection_id": "det_001, det_002",
+      "source_text": "(DD). Karachi bakery Pearl Pvt Limited Survey No 240, Shed No.4, Pedamma Gadda, Rajendra Nagar Mandal, Gaganpahad Village, Ranga Reddy Dist., Telangana, India. PIN-500030",
+      "source_image_id": null,
+      "bounding_box": null,
+      "confidence": null
+    },
+    {
+      "detection_id": "det_008, det_009",
+      "source_text": "Net Quantity: 400g",
+      "source_image_id": null,
+      "bounding_box": null,
+      "confidence": null
+    },
+    {
+      "detection_id": "det_013, det_014",
+      "source_text": "PACKED ON: 26.AUG.2026",
+      "source_image_id": null,
+      "bounding_box": null,
+      "confidence": null
+    },
+    {
+      "detection_id": "det_010, det_011",
+      "source_text": "MRP in (₹): (Incl. of all taxes) 220.00",
+      "source_image_id": null,
+      "bounding_box": null,
+      "confidence": null
+    },
+    {
+      "detection_id": "det_015, det_016",
+      "source_text": "USE BY DATE : 25.JAN.2027",
+      "source_image_id": null,
+      "bounding_box": null,
+      "confidence": null
+    },
+    {
+      "detection_id": "det_006",
+      "source_text": "For Customer Complaints or Feedback/Suggestions/Queries, Please Contact Our Executive Customer Care No: +9140 66660909, or Mail us: info@karachibakery.com, or Write to us at Following Address, Karachi Bakery, 6-3-190, Khanchand Towers, Road No 1, Banjara Hills, Hyderabad-500034, (T.S.) India.",
+      "source_image_id": null,
+      "bounding_box": null,
+      "confidence": null
+    },
+    {
+      "detection_id": "det_007",
+      "source_text": "PRODUCT OF INDIA",
+      "source_image_id": null,
+      "bounding_box": null,
+      "confidence": null
+    },
+    {
+      "detection_id": "det_011",
+      "source_text": "USP . RS . 0.55/g",
+      "source_image_id": null,
+      "bounding_box": null,
+      "confidence": null
+    }
+  ]
+}

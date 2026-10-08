@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetroScan - Foundation Test</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f9fafb;
+            color: #111827;
+        }
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+        p {
+            color: #4b5563;
+            font-size: 0.875rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .status {
+            padding: 12px;
+            border-radius: 6px;
+            background: #f3f4f6;
+            font-family: monospace;
+            font-size: 0.875rem;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>MetroScan — Clean Foundation</h1>
+        <p>Phase 1 Foundation is ready. Backend API status check:</p>
+        <button id="check-btn">Check Backend Health</button>
+        <div id="status-box" class="status">Click button to test connection...</div>
+    </div>
+
+    <script>
+        document.getElementById('check-btn').addEventListener('click', async () => {
+            const box = document.getElementById('status-box');
+            box.textContent = 'Checking /api/health...';
+            try {
+                const res = await fetch('/api/health');
+                const data = await res.json();
+                box.textContent = 'Status: ' + JSON.stringify(data);
+                box.style.background = '#def7ec';
+                box.style.color = '#03543f';
+            } catch (err) {
+                box.textContent = 'Error connecting: ' + err.message;
+                box.style.background = '#fde8e8';
+                box.style.color = '#9b1c1c';
+            }
+        });
+    </script>
+</body>
+</html>
