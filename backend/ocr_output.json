@@ -1,0 +1,25 @@
+{
+  "package_id": "pkg_bedc693d",
+  "images": [
+    {
+      "image_id": "img_box_back",
+      "label_side": "back",
+      "width": 1280,
+      "height": 960
+    }
+  ],
+  "detections": [
+    {
+      "detection_id": "det_001",
+      "source_image_id": "img_box_back",
+      "text": "3 8e*81 0 58 1 1 1 1 1 5 8 1 0 1 8 O 23 1 1 1 3 1 1 Hd 0 8 9e 8",
+      "confidence": 0.95,
+      "bounding_box": {
+        "x": 14,
+        "y": 132,
+        "width": 721,
+        "height": 646
+      }
+    }
+  ]
+}

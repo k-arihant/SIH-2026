@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MetroScan — Legal Metrology Compliance System</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Leaflet CSS & JS for OpenStreetMap -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Supabase JS Client for Google OAuth -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gov: {
+              blue: '#1A5276',
+              dark: '#0B3C5D',
+              saffron: '#F39C12',
+              green: '#27AE60',
+              red: '#C0392B',
+              amber: '#F1C40F',
+              canvas: '#F8F9FA'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    #heatmap { height: 440px; border-radius: 0.75rem; z-index: 1; }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800 flex flex-col font-sans">
+
+  <!-- Top Sovereign Header -->
+  <header class="bg-gov-blue text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-amber-400 text-gov-dark flex items-center justify-center font-black text-xl shadow">
+          ⚖️
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-black tracking-tight">METROSCAN</span>
+            <span class="bg-amber-400 text-gov-dark font-extrabold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">SIH 2026</span>
+          </div>
+          <p class="text-xs text-blue-200">Legal Metrology (Packaged Commodities) Rules, 2011 Automated Verification</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex gap-2">
+        <button onclick="switchTab('scan')" id="tab-scan" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-white/20 text-white transition flex items-center gap-1.5">
+          <i data-lucide="scan" class="w-4 h-4"></i> Package Audit
+        </button>
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-blue-200 hover:bg-white/10 transition flex items-center gap-1.5">
+          <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Command Dashboard
+        </button>
+        <button onclick="switchTab('history')" id="tab-history" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-blue-200 hover:bg-white/10 transition flex items-center gap-1.5">
+          <i data-lucide="clock" class="w-4 h-4"></i> Audit Registry
+        </button>
+      </nav>
+
+      <!-- Auth User Container -->
+      <div id="auth-container" class="flex items-center gap-2">
+        <button onclick="openAuthModal()" id="btn-login-modal" class="bg-amber-400 hover:bg-amber-300 text-gov-dark font-extrabold text-xs px-3.5 py-2 rounded-lg shadow flex items-center gap-1.5 transition">
+          <i data-lucide="user-check" class="w-4 h-4"></i> Login (Inspector / Citizen)
+        </button>
+        <div id="user-badge" class="hidden items-center gap-2 bg-gov-dark px-3 py-1.5 rounded-xl border border-amber-400/40 text-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <div class="text-left">
+            <div id="badge-name" class="font-bold text-white text-[11px] leading-tight">Inspector Amit Verma</div>
+            <div id="badge-id" class="text-[9px] text-amber-300 font-mono">Badge: LM-DEL-8492</div>
+          </div>
+          <button onclick="logoutUser()" title="Logout" class="ml-2 text-gray-400 hover:text-white p-1">
+            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+
+    <!-- ======================================================== -->
+    <!-- TAB 1: PACKAGE INSPECTION & SCORECARD -->
+    <!-- ======================================================== -->
+    <section id="view-scan" class="space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left Column: Upload Tray -->
+        <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h2 class="text-base font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="camera" class="w-5 h-5 text-gov-blue"></i>
+                1. Capture / Select Package Images
+              </h2>
+              <span class="text-xs text-gray-500 font-medium" id="selected-count">0 of 6 selected</span>
+            </div>
+            <!-- Inspecting Officer Status Card -->
+            <div id="officer-card" class="mb-4 p-3 bg-blue-50/80 border border-blue-200 rounded-xl flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-gov-blue text-amber-300 flex items-center justify-center font-bold">
+                  🛡️
+                </div>
+                <div>
+                  <div id="card-officer-title" class="font-bold text-gov-blue">Inspector Amit Verma</div>
+                  <div id="card-badge-no" class="text-[10px] text-gray-600 font-mono">Badge ID: LM-DEL-8492</div>
+                </div>
+              </div>
+              <span id="card-role-tag" class="bg-gov-blue text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full">
+                Official
+              </span>
+            </div>
+
+            <!-- Drop Zone -->
+            <label class="border-2 border-dashed border-gray-300 hover:border-gov-blue bg-gray-50 hover:bg-blue-50/20 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer transition text-center group">
+              <i data-lucide="upload-cloud" class="w-12 h-12 text-gray-400 group-hover:text-gov-blue transition mb-2"></i>
+              <span class="text-sm font-semibold text-gray-700">Click to browse or drag & drop packaging photos</span>
+              <span class="text-xs text-gray-400 mt-1">JPEG, PNG, WebP supported</span>
+              <input type="file" id="file-input" multiple accept="image/*" class="hidden" onchange="handleFileSelect(event)" />
+            </label>
+
+            <!-- Selected Files Preview Grid -->
+            <div id="preview-container" class="grid grid-cols-3 gap-2 mt-4 hidden"></div>
+
+            <!-- Optional Inspection Metadata -->
+            <div class="mt-4 pt-4 border-t border-gray-100 space-y-3">
+              <div>
+                <label class="block text-[11px] font-bold text-gray-600 uppercase tracking-wider mb-1">Store / Retail Mandi Name</label>
+                <input type="text" id="store-name" value="Reliance Smart Supermarket, Sector 62" class="w-full text-xs p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gov-blue focus:outline-none" />
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <label class="block text-[11px] font-bold text-gray-600 uppercase tracking-wider">GPS Coordinates</label>
+                  <button type="button" onclick="detectLiveGPS()" id="btn-gps" class="text-[10px] text-gov-blue hover:text-gov-dark font-bold flex items-center gap-1 bg-blue-50 hover:bg-blue-100 px-2.5 py-1 rounded-lg border border-blue-200 transition cursor-pointer">
+                    <i data-lucide="crosshair" class="w-3 h-3"></i> <span>Auto-Detect Live GPS</span>
+                  </button>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <input type="text" id="lat" value="28.6289" placeholder="Latitude" class="w-full text-xs p-2 rounded-lg border border-gray-300 font-mono" />
+                  </div>
+                  <div>
+                    <input type="text" id="lng" value="77.3653" placeholder="Longitude" class="w-full text-xs p-2 rounded-lg border border-gray-300 font-mono" />
+                  </div>
+                </div>
+                <div id="gps-status" class="text-[10px] text-gray-500 mt-1 flex items-center gap-1.5 font-medium">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                  <span id="gps-status-text">Click 'Auto-Detect Live GPS' to capture device location</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <button id="btn-scan" onclick="triggerScan()" disabled class="mt-6 w-full bg-gov-blue hover:bg-gov-dark disabled:bg-gray-300 text-white font-bold py-3.5 px-4 rounded-xl shadow transition flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+            <span id="btn-scan-text">Select Images to Verify</span>
+          </button>
+        </div>
+
+        <!-- Right Column: Statutory Scorecard -->
+        <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-gray-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-base font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="clipboard-check" class="w-5 h-5 text-gov-blue"></i>
+                2. Statutory Compliance Scorecard
+              </h2>
+              <span id="verdict-pill" class="hidden text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider"></span>
+            </div>
+
+            <!-- Empty Placeholder -->
+            <div id="scorecard-empty" class="text-center py-20 text-gray-400">
+              <i data-lucide="file-search" class="w-16 h-16 mx-auto mb-3 opacity-30 text-gov-blue"></i>
+              <p class="font-medium text-gray-600">No inspection completed yet</p>
+              <p class="text-xs text-gray-400 mt-1 max-w-sm mx-auto">Upload packaging images on the left and click "Verify Compliance" to evaluate against the 2011 Rules.</p>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="scorecard-loading" class="text-center py-20 hidden">
+              <div class="inline-block w-12 h-12 border-4 border-gov-blue border-t-transparent rounded-full animate-spin mb-4"></div>
+              <p class="font-bold text-gray-800">Executing Packaging Compliance Audit...</p>
+              <p class="text-xs text-gray-500 mt-1">Extracting optical declarations & validating 10 statutory rules</p>
+            </div>
+
+            <!-- Live Scorecard Output -->
+            <div id="scorecard-content" class="hidden space-y-4">
+              <!-- Score Banner -->
+              <div id="score-banner" class="p-4 rounded-xl border flex items-center justify-between">
+                <div>
+                  <div class="text-[11px] font-bold uppercase tracking-wider text-gray-600">Statutory Verdict</div>
+                  <div id="score-status" class="text-2xl font-black"></div>
+                  <div id="score-product" class="text-xs font-semibold mt-0.5 text-gray-700"></div>
+                  <div id="score-timestamp" class="text-[10px] text-gray-500 font-mono mt-1 flex items-center gap-1">
+                    <i data-lucide="clock" class="w-3 h-3 text-gray-400"></i>
+                    <span id="audit-timestamp-val">Audit Timestamp: Calculating...</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div id="score-pct" class="text-3xl font-black"></div>
+                  <div class="text-[11px] text-gray-500 uppercase tracking-wider">Compliance Index</div>
+                </div>
+              </div>
+
+              <!-- 10 Rules Accordion -->
+              <div class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Declarations Checklist:</div>
+              <div id="rules-list" class="space-y-2 max-h-[360px] overflow-y-auto pr-1"></div>
+            </div>
+          </div>
+
+          <!-- Bottom Actions -->
+          <div id="scorecard-actions" class="hidden pt-4 mt-4 border-t border-gray-100 flex gap-3">
+            <button onclick="downloadLatestPdf()" class="flex-1 bg-gray-900 hover:bg-black text-white text-xs font-bold py-3 px-4 rounded-xl shadow flex items-center justify-center gap-2 transition cursor-pointer">
+              <i data-lucide="download" class="w-4 h-4"></i> Download Official PDF Certificate
+            </button>
+            <button onclick="openEmailModal()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-3 px-4 rounded-xl shadow flex items-center justify-center gap-2 transition cursor-pointer">
+              <i data-lucide="mail" class="w-4 h-4"></i> Get via Email
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB 2: COMMAND DASHBOARD & MAP -->
+    <!-- ======================================================== -->
+    <section id="view-dashboard" class="hidden space-y-6">
+      <!-- 4 KPI Cards -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+          <div class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Total Scans Audited</div>
+          <div id="kpi-total" class="text-3xl font-black text-gray-900 mt-1">--</div>
+          <div class="text-xs text-emerald-600 font-semibold mt-1">↑ Active Inspection Mesh</div>
+        </div>
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+          <div class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Today's Field Audits</div>
+          <div id="kpi-today" class="text-3xl font-black text-gov-blue mt-1">--</div>
+          <div class="text-xs text-gray-500 mt-1">Across retail mandis</div>
+        </div>
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+          <div class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Violations Flagged</div>
+          <div id="kpi-violations" class="text-3xl font-black text-gov-red mt-1">--</div>
+          <div class="text-xs text-rose-600 font-semibold mt-1">Actionable legal notices</div>
+        </div>
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+          <div class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">National Compliance %</div>
+          <div id="kpi-rate" class="text-3xl font-black text-gov-green mt-1">--%</div>
+          <div class="text-xs text-gray-500 mt-1">2011 statutory baseline</div>
+        </div>
+      </div>
+
+      <!-- India Violation Heatmap -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-base font-bold text-gray-900 flex items-center gap-2">
+              <i data-lucide="map-pin" class="w-5 h-5 text-gov-blue"></i>
+              Real-Time GIS Packaging Violation Heatmap
+            </h2>
+            <p class="text-xs text-gray-500">Live geo-coordinates of retail inspections and detected non-compliant packages</p>
+          </div>
+          <div class="flex gap-3 text-xs font-semibold">
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span> Compliant</span>
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span> Violation</span>
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span> Warning</span>
+          </div>
+        </div>
+        <div id="heatmap"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB 3: AUDIT HISTORY REGISTRY -->
+    <!-- ======================================================== -->
+    <section id="view-history" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+          <div>
+            <h2 class="text-base font-bold text-gray-900 flex items-center gap-2">
+              <i data-lucide="database" class="w-5 h-5 text-gov-blue"></i>
+              Official Inspection Audit Registry (Supabase PostgreSQL)
+            </h2>
+            <p class="text-xs text-gray-500">Search, filter, and inspect complete 10-rule audit dossiers with court-admissible certificates</p>
+          </div>
+        </div>
+
+        <!-- Search and Filter Controls -->
+        <div class="flex flex-col sm:flex-row gap-3 items-center justify-between mb-4 bg-gray-50 p-3 rounded-xl border border-gray-200">
+          <div class="relative flex-1 w-full">
+            <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-2.5"></i>
+            <input type="text" id="search-history" oninput="debounceLoadHistory()" placeholder="Search product name, brand, store, or audit ID..." class="w-full pl-9 pr-3 py-2 text-xs border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-gov-blue focus:outline-none font-medium" />
+          </div>
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <select id="filter-status" onchange="loadHistoryTable()" class="text-xs py-2 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gov-blue focus:outline-none font-bold text-gray-700 bg-white">
+              <option value="ALL">All Statuses</option>
+              <option value="NON_COMPLIANT">⚠️ Non-Compliant (Violations)</option>
+              <option value="COMPLIANT">✅ Compliant</option>
+              <option value="WARNING">⚡ Warning</option>
+            </select>
+            <button onclick="loadHistoryTable()" class="p-2 bg-white border border-gray-300 hover:bg-gray-100 rounded-lg text-gray-600 transition cursor-pointer flex items-center justify-center" title="Refresh Audit Feed">
+              <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-gray-50 text-gray-600 uppercase font-bold border-b border-gray-200">
+              <tr>
+                <th class="py-3 px-4">Audit ID</th>
+                <th class="py-3 px-4">Product Name</th>
+                <th class="py-3 px-4">Brand</th>
+                <th class="py-3 px-4">Retail Location</th>
+                <th class="py-3 px-4">Compliance Status</th>
+                <th class="py-3 px-4">Score</th>
+                <th class="py-3 px-4">Timestamp</th>
+                <th class="py-3 px-4 text-right">Dossier</th>
+              </tr>
+            </thead>
+            <tbody id="history-tbody" class="divide-y divide-gray-100">
+              <tr><td colspan="8" class="text-center py-8 text-gray-400">Loading audit history from database...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-500">
+    <p>MetroScan • Smart India Hackathon (SIH 2026) Automated Compliance System for Legal Metrology Rules, 2011</p>
+  </footer>
+
+  <!-- Web Logic Script -->
+  <script>
+    let selectedFiles = [];
+    let latestScanResult = null;
+    let mapInstance = null;
+
+    // Initialize Lucide icons and check auth session on load
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      loadDashboardStats();
+      checkOAuthSession();
+    });
+
+    function switchTab(tab) {
+      ['scan', 'dashboard', 'history'].forEach(t => {
+        document.getElementById(`view-${t}`).classList.add('hidden');
+        document.getElementById(`tab-${t}`).className = "px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-blue-200 hover:bg-white/10 transition flex items-center gap-1.5";
+      });
+
+      document.getElementById(`view-${tab}`).classList.remove('hidden');
+      document.getElementById(`tab-${tab}`).className = "px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-white/20 text-white transition flex items-center gap-1.5";
+      lucide.createIcons();
+
+      if (tab === 'dashboard') {
+        loadDashboardStats();
+        initMap();
+      } else if (tab === 'history') {
+        loadHistoryTable();
+      }
+    }
+
+    function handleFileSelect(e) {
+      if (!e.target.files.length) return;
+      selectedFiles = Array.from(e.target.files).slice(0, 6);
+      document.getElementById('selected-count').innerText = `${selectedFiles.length} of 6 selected`;
+
+      const container = document.getElementById('preview-container');
+      container.innerHTML = '';
+      container.classList.remove('hidden');
+
+      selectedFiles.forEach((f, idx) => {
+        const url = URL.createObjectURL(f);
+        const div = document.createElement('div');
+        div.className = "relative rounded-lg overflow-hidden border border-gray-200 h-20 bg-gray-100";
+        div.innerHTML = `<img src="${url}" class="w-full h-full object-cover" /><span class="absolute bottom-1 right-1 bg-black/70 text-white text-[9px] px-1 rounded">#${idx+1}</span>`;
+        container.appendChild(div);
+      });
+
+      const btn = document.getElementById('btn-scan');
+      btn.disabled = false;
+      document.getElementById('btn-scan-text').innerText = `Start Compliance Audit (${selectedFiles.length} Photos)`;
+    }
+
+    async function triggerScan() {
+      if (!selectedFiles.length) return;
+
+      document.getElementById('scorecard-empty').classList.add('hidden');
+      document.getElementById('scorecard-content').classList.add('hidden');
+      document.getElementById('scorecard-loading').classList.remove('hidden');
+      document.getElementById('btn-scan').disabled = true;
+
+      const formData = new FormData();
+      selectedFiles.forEach(f => formData.append('images', f));
+      formData.append('store_name', document.getElementById('store-name').value);
+      formData.append('latitude', document.getElementById('lat').value);
+      formData.append('longitude', document.getElementById('lng').value);
+
+      try {
+        const res = await fetch('/api/v1/scan/analyze', { method: 'POST', body: formData });
+        const data = await res.json();
+        latestScanResult = data;
+        renderScorecard(data);
+      } catch (err) {
+        alert('Inspection failed: ' + err.message);
+      } finally {
+        document.getElementById('scorecard-loading').classList.add('hidden');
+        document.getElementById('btn-scan').disabled = false;
+      }
+    }
+
+    function renderScorecard(data) {
+      document.getElementById('scorecard-content').classList.remove('hidden');
+      document.getElementById('scorecard-actions').classList.remove('hidden');
+
+      const isPass = data.overall_status === 'COMPLIANT';
+      const isFail = data.overall_status === 'NON_COMPLIANT';
+
+      const banner = document.getElementById('score-banner');
+      banner.className = `p-4 rounded-xl border flex items-center justify-between ${
+        isPass ? 'bg-emerald-50 border-emerald-200 text-emerald-900' :
+        isFail ? 'bg-rose-50 border-rose-200 text-rose-900' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+
+      document.getElementById('score-status').innerText = data.overall_status;
+      document.getElementById('score-product').innerText = `${data.product_name} • ${data.brand_name}`;
+      document.getElementById('score-pct').innerText = `${data.compliance_score}%`;
+
+      // ── Point 2: Format and display statutory inspection timestamp in IST ──
+      const auditDate = data.created_at ? new Date(data.created_at) : new Date();
+      const istTimestamp = auditDate.toLocaleString('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        day: '2-digit', month: 'short', year: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+      });
+      const tsEl = document.getElementById('audit-timestamp-val');
+      if (tsEl) {
+        tsEl.innerText = `Audit Timestamp: ${istTimestamp} (IST)`;
+      }
+
+      const list = document.getElementById('rules-list');
+      list.innerHTML = '';
+
+      data.declarations.forEach(d => {
+        const item = document.createElement('div');
+        const badgeColor = d.status === 'PASS' ? 'bg-emerald-100 text-emerald-800' :
+                           d.status === 'FAIL' ? 'bg-rose-100 text-rose-800' : 'bg-amber-100 text-amber-800';
+        const iconColor = d.status === 'PASS' ? 'text-emerald-600' :
+                          d.status === 'FAIL' ? 'text-rose-600' : 'text-amber-500';
+        const iconName = d.status === 'PASS' ? 'check-circle-2' :
+                         d.status === 'FAIL' ? 'x-circle' : 'alert-triangle';
+
+        item.className = "p-3 rounded-xl border border-gray-100 bg-gray-50/50 flex items-start gap-3";
+        item.innerHTML = `
+          <i data-lucide="${iconName}" class="w-5 h-5 ${iconColor} mt-0.5 flex-shrink-0"></i>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-gray-900">${d.rule_name}</span>
+              <span class="text-[10px] font-black px-2 py-0.5 rounded ${badgeColor}">${d.status}</span>
+            </div>
+            <div class="text-[11px] text-gray-600 mt-0.5 truncate font-mono">
+              Extracted: ${d.extracted_value || '<span class="text-gray-400 italic">Not Detected</span>'}
+            </div>
+            ${d.violation_reason ? `<div class="text-[11px] text-rose-600 font-semibold mt-1">⚠️ ${d.violation_reason}</div>` : ''}
+          </div>
+        `;
+        list.appendChild(item);
+      });
+
+      lucide.createIcons();
+    }
+
+    // ── Point 1: Auto-Detect Live Device GPS Coordinates ──
+    function detectLiveGPS() {
+      const btn = document.getElementById('btn-gps');
+      const statusText = document.getElementById('gps-status-text');
+      const originalHtml = btn.innerHTML;
+
+      if (!navigator.geolocation) {
+        alert('Geolocation is not supported by your current browser.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="inline-block w-3 h-3 border-2 border-gov-blue border-t-transparent rounded-full animate-spin"></span> <span>Acquiring Fix...</span>`;
+      statusText.innerText = 'Connecting to GPS / WiFi location mesh...';
+
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude.toFixed(6);
+          const lng = pos.coords.longitude.toFixed(6);
+          const acc = Math.round(pos.coords.accuracy);
+
+          document.getElementById('lat').value = lat;
+          document.getElementById('lng').value = lng;
+          statusText.innerHTML = `<span class="text-emerald-700 font-bold">✓ Live GPS Locked:</span> ${lat}, ${lng} (±${acc}m)`;
+          btn.innerHTML = originalHtml;
+          btn.disabled = false;
+          lucide.createIcons();
+        },
+        (err) => {
+          console.warn('Geolocation error:', err);
+          statusText.innerHTML = `<span class="text-amber-600 font-medium">GPS permission denied or timeout. Default location active.</span>`;
+          btn.innerHTML = originalHtml;
+          btn.disabled = false;
+          lucide.createIcons();
+        },
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+      );
+    }
+
+    function downloadLatestPdf() {
+      if (!latestScanResult) return;
+      const store = document.getElementById('store-name') ? document.getElementById('store-name').value : '';
+      const lat = document.getElementById('lat') ? document.getElementById('lat').value : '';
+      const lng = document.getElementById('lng') ? document.getElementById('lng').value : '';
+
+      let url = `/api/v1/scan/${latestScanResult.scan_id}/certificate.pdf`;
+      const params = [];
+      if (store) params.push(`store_name=${encodeURIComponent(store)}`);
+      if (lat) params.push(`latitude=${encodeURIComponent(lat)}`);
+      if (lng) params.push(`longitude=${encodeURIComponent(lng)}`);
+      if (params.length > 0) url += `?${params.join('&')}`;
+
+      window.open(url, '_blank');
+    }
+
+    // ── Point 4 & 5: Email Certificate Modal Handlers ──
+    let activeEmailScanId = null;
+    let activeEmailProduct = '';
+
+    function openEmailModal() {
+      if (!latestScanResult) {
+        alert('Please complete a package audit first.');
+        return;
+      }
+      openEmailModalForScan(latestScanResult.scan_id, latestScanResult.product_name);
+    }
+
+    function openEmailModalForScan(scanId, productName) {
+      activeEmailScanId = scanId;
+      activeEmailProduct = productName;
+      document.getElementById('email-modal').classList.remove('hidden');
+      document.getElementById('email-scan-label').innerText = `Audit #${scanId.substring(0, 8)}: ${productName}`;
+
+      const emailInput = document.getElementById('email-recipient');
+      if (currentUser && currentUser.email) {
+        emailInput.value = currentUser.email;
+      } else if (!emailInput.value) {
+        emailInput.value = 'inspector.verma@gov.in';
+      }
+    }
+
+    function closeEmailModal() {
+      document.getElementById('email-modal').classList.add('hidden');
+    }
+
+    async function sendCertificateEmail() {
+      if (!activeEmailScanId) return;
+      const recipient = document.getElementById('email-recipient').value.trim();
+      const recipientName = document.getElementById('email-name').value.trim();
+
+      if (!recipient) {
+        alert('Please provide a valid recipient email address.');
+        return;
+      }
+
+      const btn = document.getElementById('btn-send-email');
+      const origText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<span class="inline-block w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin mr-1"></span> Sending...`;
+
+      try {
+        const res = await fetch(`/api/v1/scan/${activeEmailScanId}/email`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            recipient_email: recipient,
+            recipient_name: recipientName || 'Citizen / Officer',
+            store_name: document.getElementById('store-name') ? document.getElementById('store-name').value : null,
+          })
+        });
+        const data = await res.json();
+        closeEmailModal();
+        alert(`✅ Official Statutory Certificate Dispatched!\n\nTo: ${data.recipient}\nFrom: ${data.sender}\nDelivery Status: ${data.message}`);
+      } catch (err) {
+        alert('Email dispatch failed: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = origText;
+      }
+    }
+
+    // ── Point 3: Searchable Audit Registry with Live Filter & Drill-Down ──
+    let historyDebounceTimer = null;
+    function debounceLoadHistory() {
+      clearTimeout(historyDebounceTimer);
+      historyDebounceTimer = setTimeout(loadHistoryTable, 300);
+    }
+
+    async function loadHistoryTable() {
+      const tbody = document.getElementById('history-tbody');
+      const searchInput = document.getElementById('search-history');
+      const statusSelect = document.getElementById('filter-status');
+
+      const q = searchInput ? searchInput.value.trim() : '';
+      const status = statusSelect ? statusSelect.value : 'ALL';
+
+      let url = `/api/v1/dashboard/recent-scans?limit=50`;
+      if (q) url += `&q=${encodeURIComponent(q)}`;
+      if (status && status !== 'ALL') url += `&status=${encodeURIComponent(status)}`;
+
+      try {
+        const res = await fetch(url);
+        const list = await res.json();
+        tbody.innerHTML = '';
+
+        if (!list || !list.length) {
+          tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-gray-400">No matching packaging inspection records found.</td></tr>`;
+          return;
+        }
+
+        list.forEach(item => {
+          const row = document.createElement('tr');
+          const badgeColor = item.overall_status === 'COMPLIANT' ? 'bg-emerald-100 text-emerald-800' :
+                             item.overall_status === 'NON_COMPLIANT' ? 'bg-rose-100 text-rose-800' : 'bg-amber-100 text-amber-800';
+          row.className = "hover:bg-gray-50/80 transition";
+          row.innerHTML = `
+            <td class="py-3 px-4 font-mono text-[10px] text-gray-500 font-bold">${item.scan_id.substring(0, 8)}...</td>
+            <td class="py-3 px-4 font-bold text-gray-900">${item.product_name}</td>
+            <td class="py-3 px-4 text-gray-600 font-medium">${item.brand_name || 'Standard'}</td>
+            <td class="py-3 px-4 text-gray-500">${item.store_name || 'Market Mandi'}</td>
+            <td class="py-3 px-4"><span class="text-[10px] font-black px-2.5 py-0.5 rounded-full ${badgeColor}">${item.overall_status}</span></td>
+            <td class="py-3 px-4 font-black text-gray-800">${item.compliance_score}%</td>
+            <td class="py-3 px-4 text-gray-500 text-[10px] font-mono">${item.created_at ? new Date(item.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Today'}</td>
+            <td class="py-3 px-4 text-right">
+              <button onclick="viewAuditDetails('${item.scan_id}')" class="bg-gov-blue hover:bg-gov-dark text-white text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition inline-flex items-center gap-1 cursor-pointer">
+                <i data-lucide="eye" class="w-3 h-3"></i> View
+              </button>
+            </td>
+          `;
+          tbody.appendChild(row);
+        });
+        lucide.createIcons();
+      } catch (e) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-4 text-red-500">Failed to load history: ${e.message}</td></tr>`;
+      }
+    }
+
+    // ── Historical Record Inspection Drilldown Modal ──
+    async function viewAuditDetails(scanId) {
+      const modal = document.getElementById('audit-detail-modal');
+      modal.classList.remove('hidden');
+      document.getElementById('modal-audit-id').innerText = `Audit ID: ${scanId}`;
+      document.getElementById('modal-dossier-body').innerHTML = `
+        <div class="text-center py-12">
+          <div class="inline-block w-8 h-8 border-4 border-gov-blue border-t-transparent rounded-full animate-spin mb-3"></div>
+          <p class="text-xs text-gray-500 font-medium">Retrieving official inspection records from PostgreSQL...</p>
+        </div>
+      `;
+
+      try {
+        const res = await fetch(`/api/v1/scan/${scanId}`);
+        const data = await res.json();
+
+        let statusBadge = data.overall_status === 'COMPLIANT' ? 'bg-emerald-100 text-emerald-800' :
+                          data.overall_status === 'NON_COMPLIANT' ? 'bg-rose-100 text-rose-800' : 'bg-amber-100 text-amber-800';
+
+        let rulesHtml = '';
+        if (data.declarations && data.declarations.length) {
+          data.declarations.forEach(d => {
+            const bCol = d.status === 'PASS' ? 'bg-emerald-100 text-emerald-800' :
+                         d.status === 'FAIL' ? 'bg-rose-100 text-rose-800' : 'bg-amber-100 text-amber-800';
+            rulesHtml += `
+              <div class="p-2.5 rounded-lg border border-gray-200 bg-gray-50/70 text-xs">
+                <div class="flex items-center justify-between font-bold text-gray-800">
+                  <span>${d.rule_name}</span>
+                  <span class="text-[9px] px-2 py-0.5 rounded font-black ${bCol}">${d.status}</span>
+                </div>
+                <div class="text-[11px] text-gray-600 font-mono mt-0.5">Extracted: ${d.extracted_value || '<span class="italic text-gray-400">Not Detected</span>'}</div>
+                ${d.violation_reason ? `<div class="text-[11px] text-rose-600 font-semibold mt-1">⚠️ ${d.violation_reason}</div>` : ''}
+              </div>
+            `;
+          });
+        }
+
+        document.getElementById('modal-dossier-body').innerHTML = `
+          <div class="space-y-4">
+            <div class="p-3 bg-blue-50/50 border border-blue-100 rounded-xl flex items-center justify-between">
+              <div>
+                <span class="text-[10px] uppercase tracking-wider font-bold text-gray-500">Commodity Identity</span>
+                <div class="text-base font-black text-gray-900">${data.product_name}</div>
+                <div class="text-xs text-gray-600 font-medium">${data.brand_name}</div>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-black px-2.5 py-1 rounded-full ${statusBadge}">${data.overall_status}</span>
+                <div class="text-xl font-black text-gov-blue mt-1">${data.compliance_score}%</div>
+              </div>
+            </div>
+
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">10 Statutory Declarations Checklist:</div>
+              <div class="space-y-1.5 max-h-60 overflow-y-auto pr-1">
+                ${rulesHtml}
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex gap-2">
+              <button onclick="downloadPdfById('${scanId}')" class="flex-1 bg-gray-900 hover:bg-black text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow flex items-center justify-center gap-2 cursor-pointer transition">
+                <i data-lucide="download" class="w-4 h-4"></i> Download Official Certificate (PDF)
+              </button>
+              <button onclick="openEmailModalForScan('${scanId}', '${data.product_name.replace(/'/g, "\\'")}')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow flex items-center justify-center gap-2 cursor-pointer transition">
+                <i data-lucide="mail" class="w-4 h-4"></i> Email Certificate
+              </button>
+            </div>
+          </div>
+        `;
+        lucide.createIcons();
+      } catch (err) {
+        document.getElementById('modal-dossier-body').innerHTML = `<p class="text-rose-500 text-xs py-4">Error loading dossier: ${err.message}</p>`;
+      }
+    }
+
+    function closeAuditDetailModal() {
+      document.getElementById('audit-detail-modal').classList.add('hidden');
+    }
+
+    async function downloadPdfById(scanId) {
+      try {
+        const res = await fetch(`/api/v1/scan/${scanId}/certificate`);
+        const data = await res.json();
+        if (data.pdf_url) {
+          window.open(data.pdf_url, '_blank');
+        } else {
+          alert('Certificate generating, please try again.');
+        }
+      } catch (e) {
+        alert('Could not download PDF: ' + e.message);
+      }
+    }
+
+    async function loadDashboardStats() {
+      try {
+        const res = await fetch('/api/v1/dashboard/stats');
+        const data = await res.json();
+        document.getElementById('kpi-total').innerText = data.total_scans;
+        document.getElementById('kpi-today').innerText = data.today_scans;
+        document.getElementById('kpi-violations').innerText = data.violations_detected;
+        document.getElementById('kpi-rate').innerText = `${data.compliance_rate}%`;
+      } catch (e) {
+        console.warn('Could not load stats', e);
+      }
+    }
+
+    function initMap() {
+      if (mapInstance) {
+        mapInstance.invalidateSize();
+        return;
+      }
+
+      mapInstance = L.map('heatmap').setView([28.6139, 77.2090], 10);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(mapInstance);
+
+      fetch('/api/v1/dashboard/heatmap')
+        .then(r => r.json())
+        .then(pins => {
+          pins.forEach(p => {
+            const color = p.overall_status === 'COMPLIANT' ? '#27AE60' :
+                          p.overall_status === 'NON_COMPLIANT' ? '#C0392B' : '#F39C12';
+            const marker = L.circleMarker([p.latitude, p.longitude], {
+              radius: 8,
+              fillColor: color,
+              color: '#ffffff',
+              weight: 2,
+              fillOpacity: 0.9
+            }).addTo(mapInstance);
+
+            marker.bindPopup(`<b>${p.store_name || 'Retail Store'}</b><br/>Status: <b>${p.overall_status}</b><br/>Audit ID: ${p.scan_id}`);
+          });
+        })
+        .catch(err => console.warn('Could not load heatmap pins:', err));
+    }
+
+    // ── Supabase Client & Google OAuth Integration ──
+    const SUPABASE_PROJECT_URL = 'https://astkbgboeayupoeuuibi.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_1gO4diRuyayD7rp0mCbvTQ_LtfrB1XF';
+    let supabaseClient = null;
+    try {
+      if (window.supabase) {
+        supabaseClient = window.supabase.createClient(SUPABASE_PROJECT_URL, SUPABASE_ANON_KEY);
+      }
+    } catch (e) {
+      console.warn("Supabase client initialization warning:", e);
+    }
+
+    async function signInWithGoogle() {
+      const btn = event.currentTarget;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<span>Connecting to Google...</span>`;
+      btn.disabled = true;
+
+      try {
+        if (supabaseClient) {
+          const { data, error } = await supabaseClient.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+              redirectTo: window.location.origin
+            }
+          });
+          if (error) {
+            console.error("Supabase Google OAuth Error:", error);
+            alert(
+              "⚠️ Google OAuth Setup Needed in Supabase:\n\n" +
+              "Supabase has not enabled Google yet because it requires your Google Cloud Client ID & Secret.\n\n" +
+              "To enable it:\n" +
+              "1. Go to Supabase Dashboard -> Authentication -> Providers -> Google\n" +
+              "2. Toggle 'Enabled' and paste your Google Cloud Client ID & Secret.\n\n" +
+              "👉 For right now, click '⚡ Citizen Login' or '⚡ Officer Login' in the modal to test instantly without waiting for Google Cloud!"
+            );
+          }
+        }
+      } catch (err) {
+        console.error("OAuth Error:", err);
+        alert("Google Provider is currently disabled in your Supabase project settings. Please enable Google in Supabase Console -> Authentication -> Providers.");
+      } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
+    }
+
+    async function checkOAuthSession() {
+      if (supabaseClient) {
+        try {
+          const { data: { session } } = await supabaseClient.auth.getSession();
+          if (session && session.user) {
+            currentUser = {
+              role: 'consumer',
+              name: session.user.user_metadata?.full_name || session.user.email.split('@')[0],
+              badge_id: null,
+              department: null
+            };
+            applyUserState();
+          }
+        } catch (e) {
+          console.warn("OAuth session check:", e);
+        }
+      }
+    }
+
+    // ── Authentication Management ──
+    let currentUser = {
+      role: 'inspector',
+      name: 'Inspector Amit Verma',
+      badge_id: 'LM-DEL-8492',
+      department: 'Delhi State Legal Metrology Enforcement Division'
+    };
+
+    function openAuthModal() {
+      document.getElementById('auth-modal').classList.remove('hidden');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('auth-modal').classList.add('hidden');
+    }
+
+    let activeAuthRole = 'inspector';
+
+    function switchAuthTab(type) {
+      activeAuthRole = (type === 'official' ? 'inspector' : 'consumer');
+      if (type === 'official') {
+        document.getElementById('auth-tab-official').className = "flex-1 py-2 text-xs font-bold border-b-2 border-gov-blue text-gov-blue";
+        document.getElementById('auth-tab-consumer').className = "flex-1 py-2 text-xs font-bold text-gray-400 border-b-2 border-transparent";
+        document.getElementById('official-fields').classList.remove('hidden');
+        document.getElementById('auth-btn-text').innerText = "Login as Official Inspector";
+      } else {
+        document.getElementById('auth-tab-consumer').className = "flex-1 py-2 text-xs font-bold border-b-2 border-gov-blue text-gov-blue";
+        document.getElementById('auth-tab-official').className = "flex-1 py-2 text-xs font-bold text-gray-400 border-b-2 border-transparent";
+        document.getElementById('official-fields').classList.add('hidden');
+        document.getElementById('auth-btn-text').innerText = "Login as Citizen Consumer";
+      }
+    }
+
+    function submitAuthModal() {
+      quickLogin(activeAuthRole);
+    }
+
+    function quickLogin(role) {
+      if (role === 'inspector') {
+        currentUser = {
+          role: 'inspector',
+          name: 'Inspector Amit Verma',
+          badge_id: 'LM-DEL-8492',
+          department: 'Delhi State Legal Metrology Enforcement Division'
+        };
+      } else {
+        currentUser = {
+          role: 'consumer',
+          name: 'Priya Sharma (Citizen)',
+          badge_id: null,
+          department: null
+        };
+      }
+      applyUserState();
+      closeAuthModal();
+    }
+
+    function logoutUser() {
+      currentUser = null;
+      document.getElementById('btn-login-modal').classList.remove('hidden');
+      document.getElementById('user-badge').classList.add('hidden');
+      document.getElementById('officer-card').classList.add('opacity-50');
+      document.getElementById('card-officer-title').innerText = "Anonymous Auditor";
+      document.getElementById('card-badge-no').innerText = "Public Inspection Mode";
+      document.getElementById('card-role-tag').innerText = "Public";
+      document.getElementById('card-role-tag').className = "bg-gray-400 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full";
+    }
+
+    function applyUserState() {
+      if (!currentUser) return;
+      document.getElementById('btn-login-modal').classList.add('hidden');
+      document.getElementById('user-badge').classList.remove('hidden');
+      document.getElementById('user-badge').classList.add('flex');
+      document.getElementById('badge-name').innerText = currentUser.name;
+      document.getElementById('badge-id').innerText = currentUser.badge_id ? `Badge: ${currentUser.badge_id}` : 'Verified Citizen';
+
+      document.getElementById('officer-card').classList.remove('opacity-50');
+      document.getElementById('card-officer-title').innerText = currentUser.name;
+      document.getElementById('card-badge-no').innerText = currentUser.badge_id ? `Badge ID: ${currentUser.badge_id}` : 'Public Verification Account';
+      document.getElementById('card-role-tag').innerText = currentUser.role.toUpperCase();
+      document.getElementById('card-role-tag').className = currentUser.role === 'inspector' 
+        ? "bg-gov-blue text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full"
+        : "bg-emerald-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full";
+    }
+
+    // Set default logged in as inspector for instant inspection demo
+    applyUserState();
+  </script>
+
+  <!-- Dual-Role Auth Modal -->
+  <div id="auth-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-gray-100">
+      <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-gov-blue text-amber-400 flex items-center justify-center font-bold text-sm">
+            ⚖️
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-gray-900">MetroScan Access Portal</h3>
+            <p class="text-[11px] text-gray-500">Supabase Authentication & Role Verification</p>
+          </div>
+        </div>
+        <button onclick="closeAuthModal()" class="text-gray-400 hover:text-gray-600">✕</button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex border-b border-gray-100 text-center">
+        <button id="auth-tab-official" onclick="switchAuthTab('official')" class="flex-1 py-2 text-xs font-bold border-b-2 border-gov-blue text-gov-blue">
+          🛡️ Official Inspector
+        </button>
+        <button id="auth-tab-consumer" onclick="switchAuthTab('consumer')" class="flex-1 py-2 text-xs font-bold text-gray-400 border-b-2 border-transparent">
+          👤 Citizen Consumer
+        </button>
+      </div>
+
+      <!-- Quick 1-Click Demo Buttons -->
+      <div class="p-3 bg-amber-50 rounded-xl border border-amber-200">
+        <div class="text-[10px] font-black uppercase tracking-wider text-amber-800 mb-1.5">⚡ 1-Click Demo Login (Instant Access):</div>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="quickLogin('inspector')" class="text-xs bg-gov-blue hover:bg-gov-dark text-white font-bold py-2 px-2.5 rounded-lg shadow-sm flex items-center justify-center gap-1.5 transition">
+            🛡️ Officer Login
+          </button>
+          <button onclick="quickLogin('consumer')" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-2.5 rounded-lg shadow-sm flex items-center justify-center gap-1.5 transition">
+            👤 Citizen Login
+          </button>
+        </div>
+      </div>
+
+      <!-- Google OAuth Button -->
+      <button onclick="signInWithGoogle()" class="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-50 border border-gray-300 text-gray-700 font-bold py-2.5 px-4 rounded-xl shadow-sm transition text-xs group cursor-pointer">
+        <svg class="w-4 h-4" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+          <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+          <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 10.03 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+          <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+        </svg>
+        <span>Continue with Google (OAuth 2.0)</span>
+      </button>
+
+      <div class="relative flex py-1 items-center">
+        <div class="flex-grow border-t border-gray-200"></div>
+        <span class="flex-shrink mx-2 text-[10px] text-gray-400 uppercase font-semibold">or email login</span>
+        <div class="flex-grow border-t border-gray-200"></div>
+      </div>
+
+      <!-- Form Inputs -->
+      <div class="space-y-3 pt-1 text-xs">
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Official / User Email</label>
+          <input type="email" value="inspector.verma@gov.in" class="w-full p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gov-blue focus:outline-none" />
+        </div>
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Password</label>
+          <input type="password" value="••••••••••••" class="w-full p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gov-blue focus:outline-none" />
+        </div>
+        <div id="official-fields" class="space-y-3">
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Officer Government Badge ID</label>
+            <input type="text" value="LM-DEL-8492" class="w-full p-2.5 rounded-lg border border-gray-300 font-mono text-gov-blue font-bold" />
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Enforcement Division</label>
+            <input type="text" value="Delhi State Legal Metrology Division" class="w-full p-2.5 rounded-lg border border-gray-300 text-gray-600" />
+          </div>
+        </div>
+      </div>
+
+      <button onclick="submitAuthModal()" class="w-full bg-gov-blue hover:bg-gov-dark text-white font-bold py-3 px-4 rounded-xl shadow transition text-xs flex items-center justify-center gap-2 cursor-pointer">
+        <span id="auth-btn-text">Authenticate with Supabase</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Email Certificate Modal -->
+  <div id="email-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-gray-100">
+      <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm">
+            ✉️
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-gray-900">Dispatch Official Certificate</h3>
+            <p class="text-[11px] text-gray-500" id="email-scan-label">Legal Notice via Email</p>
+          </div>
+        </div>
+        <button onclick="closeEmailModal()" class="text-gray-400 hover:text-gray-600 cursor-pointer">✕</button>
+      </div>
+
+      <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl text-xs text-blue-950 space-y-1">
+        <div class="font-bold flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-gov-blue"></i> Official Enforcement Dispatcher:</div>
+        <div class="text-[11px] text-gray-600"><strong>Sender:</strong> MetroScan Enforcement Portal &lt;notifications@metroscan.gov.in&gt;</div>
+        <div class="text-[11px] text-gray-600">Includes SHA-256 digital attestation and court-admissible Form 1 notice.</div>
+      </div>
+
+      <div class="space-y-3 pt-1 text-xs">
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Recipient Email Address <span class="text-rose-500">*</span></label>
+          <input type="email" id="email-recipient" placeholder="inspector@gov.in or consumer@domain.com" class="w-full p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gov-blue focus:outline-none" />
+        </div>
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Recipient Name / Designation</label>
+          <input type="text" id="email-name" placeholder="Inspector Amit Verma / Store Manager" class="w-full p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gov-blue focus:outline-none" />
+        </div>
+      </div>
+
+      <div class="pt-2 flex gap-2">
+        <button onclick="closeEmailModal()" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2.5 px-4 rounded-xl text-xs cursor-pointer transition">
+          Cancel
+        </button>
+        <button id="btn-send-email" onclick="sendCertificateEmail()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl shadow text-xs flex items-center justify-center gap-1.5 cursor-pointer transition">
+          <i data-lucide="send" class="w-3.5 h-3.5"></i> Dispatch Notice
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audit Detail Dossier Modal -->
+  <div id="audit-detail-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 border border-gray-100 max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-gray-100 flex-shrink-0">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-gov-blue text-amber-400 flex items-center justify-center font-bold text-sm">
+            ⚖️
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-gray-900">Official Inspection Audit Dossier</h3>
+            <p class="text-[10px] text-gray-500 font-mono" id="modal-audit-id">Audit ID: --</p>
+          </div>
+        </div>
+        <button onclick="closeAuditDetailModal()" class="text-gray-400 hover:text-gray-600 cursor-pointer">✕</button>
+      </div>
+
+      <div id="modal-dossier-body" class="flex-1 overflow-y-auto pr-1">
+        <!-- Content dynamically injected by viewAuditDetails(scanId) -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+# MetroScan Backend Dependencies
+fastapi==0.115.0
+uvicorn[standard]==0.30.0
+python-multipart==0.0.9
+pydantic==2.9.0
+python-dotenv==1.0.1
+
+# Database & Auth
+supabase==2.7.0
+
+# Media Storage
+cloudinary==1.41.0
+
+# OCR / AI (OCR person will use these — install now so no surprises later)
+google-generativeai==0.8.0
+easyocr==1.7.2
+Pillow==10.4.0
+numpy==1.26.4
+
+# Utilities
+requests==2.32.0
+uuid6==2024.7.10

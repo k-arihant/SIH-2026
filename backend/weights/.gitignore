@@ -1,0 +1,4 @@
+# Ignore all downloaded heavy ML models and weights (*.pt, *.onnx, *.bin, *.safetensors)
+*
+# Except this gitignore file
+!.gitignore

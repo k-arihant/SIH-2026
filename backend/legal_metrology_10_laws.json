@@ -1,0 +1,129 @@
+{
+  "overall_status": "NON_COMPLIANT",
+  "compliance_score": 55.0,
+  "ten_statutory_laws": {
+    "rule_6_1_a": {
+      "rule_code": "RULE_6_1_A_MFG",
+      "rule_name": "Manufacturer / Packer / Importer Details",
+      "statutory_citation": "Rule 6(1)(a)",
+      "extracted_text": null,
+      "is_present": false,
+      "compliance_status": "FAIL",
+      "confidence_score": 0.95,
+      "measured_font_height_mm": null,
+      "violation_reason": "Manufacturer name or address is completely missing"
+    },
+    "rule_6_1_b": {
+      "rule_code": "RULE_6_1_B_NAME",
+      "rule_name": "Generic / Common Name of Commodity",
+      "statutory_citation": "Rule 6(1)(b)",
+      "extracted_text": "\"aPRs 251-INCL OF ALL TAXES)",
+      "is_present": true,
+      "compliance_status": "PASS",
+      "confidence_score": 0.97,
+      "measured_font_height_mm": null,
+      "violation_reason": null
+    },
+    "rule_6_1_c": {
+      "rule_code": "RULE_6_1_C_NET_QTY",
+      "rule_name": "Net Quantity in Standard SI Units",
+      "statutory_citation": "Rule 6(1)(c)",
+      "extracted_text": null,
+      "is_present": false,
+      "compliance_status": "FAIL",
+      "confidence_score": 0.98,
+      "measured_font_height_mm": null,
+      "violation_reason": "Net quantity declaration is missing from the package"
+    },
+    "rule_6_1_d": {
+      "rule_code": "RULE_6_1_D_MFG_DATE",
+      "rule_name": "Month & Year of Manufacture / Packing",
+      "statutory_citation": "Rule 6(1)(d)",
+      "extracted_text": null,
+      "is_present": false,
+      "compliance_status": "FAIL",
+      "confidence_score": 0.94,
+      "measured_font_height_mm": null,
+      "violation_reason": "Manufacturing or packing date is missing"
+    },
+    "rule_6_1_e": {
+      "rule_code": "RULE_6_1_E_MRP",
+      "rule_name": "Maximum Retail Price (MRP)",
+      "statutory_citation": "Rule 6(1)(e)",
+      "extracted_text": "\"aPRs 251-INCL OF ALL TAXES)",
+      "is_present": true,
+      "compliance_status": "PASS",
+      "confidence_score": 0.98,
+      "measured_font_height_mm": null,
+      "violation_reason": null
+    },
+    "rule_6_1_f": {
+      "rule_code": "RULE_6_1_F_EXPIRY",
+      "rule_name": "Best Before / Expiry Date",
+      "statutory_citation": "Rule 6(1)(f)",
+      "extracted_text": null,
+      "is_present": false,
+      "compliance_status": "PASS",
+      "confidence_score": 0.9,
+      "measured_font_height_mm": null,
+      "violation_reason": "Not applicable if commodity is non-perishable"
+    },
+    "rule_6_1_g": {
+      "rule_code": "RULE_6_1_G_CONSUMER",
+      "rule_name": "Consumer Care Contact Details",
+      "statutory_citation": "Rule 6(1)(g)",
+      "extracted_text": "@Gaec",
+      "is_present": true,
+      "compliance_status": "FAIL",
+      "confidence_score": 0.88,
+      "measured_font_height_mm": null,
+      "violation_reason": "Consumer care lacks both valid phone and email contacts"
+    },
+    "rule_6_1_h": {
+      "rule_code": "RULE_6_1_H_ORIGIN",
+      "rule_name": "Country of Origin",
+      "statutory_citation": "Rule 6(1)(h)",
+      "extracted_text": null,
+      "is_present": false,
+      "compliance_status": "PASS",
+      "confidence_score": 0.9,
+      "measured_font_height_mm": null,
+      "violation_reason": null
+    },
+    "rule_6_1_i": {
+      "rule_code": "RULE_6_1_I_USP",
+      "rule_name": "Unit Sale Price (USP)",
+      "statutory_citation": "Rule 6(1)(i)",
+      "extracted_text": "VNIT s4le PRKCe:",
+      "is_present": true,
+      "compliance_status": "WARNING",
+      "confidence_score": 0.85,
+      "measured_font_height_mm": null,
+      "violation_reason": "Unit sale price lacks standard denominator format"
+    },
+    "rule_6_3": {
+      "rule_code": "RULE_6_3_FONT",
+      "rule_name": "Minimum Font & Numeral Height",
+      "statutory_citation": "Rule 6(3)",
+      "extracted_text": "2.2 mm (Min required: 2.0 mm)",
+      "is_present": true,
+      "compliance_status": "PASS",
+      "confidence_score": 0.92,
+      "measured_font_height_mm": 2.2,
+      "violation_reason": null
+    }
+  },
+  "extracted_entities": {
+    "product_name": "\"aPRs 251-INCL OF ALL TAXES)",
+    "brand_name": "69 Me",
+    "manufacturer": null,
+    "net_quantity": null,
+    "mfg_date": null,
+    "mrp": "\"aPRs 251-INCL OF ALL TAXES)",
+    "expiry_date": null,
+    "consumer_care": "@Gaec",
+    "country_of_origin": null,
+    "unit_sale_price": "VNIT s4le PRKCe:",
+    "measured_font_height_mm": 2.2
+  }
+}

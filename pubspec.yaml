@@ -1,0 +1,29 @@
+name: metroscan
+description: "MetroScan — Legal Metrology Compliance Inspection Mobile App"
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.5.1
+  go_router: ^14.0.0
+  intl: ^0.19.0
+  uuid: ^4.3.3
+  http: ^1.2.1
+  image_picker: ^1.1.2
+  path_provider: ^2.1.4
+  share_plus: ^10.1.1
+  url_launcher: ^6.3.0
+  permission_handler: ^11.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
