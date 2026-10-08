@@ -1,0 +1,11 @@
+﻿.env
+.env.*
+!.env.example
+
+.dart_tool/
+build/
+.idea/
+.vscode/
+
+__pycache__/
+*.pyc
